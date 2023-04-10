@@ -1,0 +1,7 @@
+# Ignore artifacts:
+build
+coverage
+# Ignore eslintrc config:
+.eslintrc.yml
+# Ignore all HTML files:
+*.html

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300&display=swap');
+
+$font-montserrat: 'Montserrat', sans-serif;
+$font-open-sans: 'Open Sans', sans-serif;
+
+@mixin button-style {
+  font-family: $font-open-sans;
+  width: 86px;
+  height: 40px;
+  background: #F6F6F6;
+  color: #1B1A1D;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 3s, color 1s;
+}
+
+@mixin button-style-active {
+  @include button-style;
+  background: #1B1A1D;
+  color: #F6F6F6;
+  transition: background 0s, color 0s;
+}
+

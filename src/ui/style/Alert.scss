@@ -1,0 +1,38 @@
+@import "variables";
+
+.alert-style-position {
+  position: absolute;
+  font-family: $font-open-sans;
+  bottom: 0;
+  margin-left: 256px;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  
+  .alert-style {
+    margin-left: -550px;
+    margin-bottom: 32px;
+
+    * {
+      background-color: #0F0F0F;
+      color: #fff;
+      border-radius: 16px;
+    }
+
+    .text-place {
+      display: grid;
+      grid-template-columns: 295px 45px;
+      align-items: center;
+      justify-items: start;
+      font-size: 14px;
+      width: 340px;
+      height: 58px;
+      padding-left: 24px;
+
+      button {
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}

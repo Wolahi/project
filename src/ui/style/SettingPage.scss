@@ -1,0 +1,44 @@
+@import "variables";
+
+.setting-page-style {
+  font-family: $font-montserrat;
+  margin-left: 256px;
+  padding-left: 75px;
+  background-color: #ffffff;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+
+  display: grid;
+  grid-template-rows: 10% repeat(4, 1fr);
+  font-size: 14px;
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .text-block {
+    display: grid;
+    width: 340px;
+    grid-template-rows: repeat(3, 36px);
+
+    span {
+      font-weight: bold;
+      text-align: left;
+      font-size: 14px;
+    }
+  }
+
+  button {
+    @include button-style;
+  }
+
+  button:active {
+    @include button-style-active;
+  }
+}

@@ -1,0 +1,27 @@
+.setting-modal-page-style {
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  row-gap: 8px;
+  column-gap: 30px;
+  grid-template-areas:
+  "textarea textarea"
+  "buttonSave buttonCansel";
+
+  .item_1 {
+    grid-area: textarea;
+    border: none;
+    resize: none;
+    border-radius: 6px;
+    height: 40px;
+    width: 320px;
+    background: #F6F6F6;
+  }
+
+  .item_2 {
+    grid-area: buttonSave;
+  }
+
+  .item_3 {
+    grid-area: buttonCansel;
+  }
+}
