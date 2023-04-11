@@ -1,19 +1,31 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import useInput from "../../../hooks/Valid";
 import { switchSign } from "../../../../store/authReducer";
 
-const SignUP = () => {
-  const email = useInput("", { isEmpty: true, minLength: 7, maxLength: 25, isEmail: true });
-  const password = useInput("", { isEmpty: true, minLength: 8, maxLength: 25 });
-  const submitPassword = useInput("", {
-    isEmpty: true,
-    minLength: 8,
-    maxLength: 25,
-    isSubmit: password.value,
+const SignUP = (): ReactElement => {
+  const email = useInput({
+    initialValue: "",
+    validations: { isEmpty: true, minLength: 7, maxLength: 25, isEmail: true },
   });
-  const userName = useInput("", { isEmpty: true, minLength: 2, maxLength: 255 });
+  const password = useInput({
+    initialValue: "",
+    validations: { isEmpty: true, minLength: 8, maxLength: 25 },
+  });
+  const submitPassword = useInput({
+    initialValue: "",
+    validations: {
+      isEmpty: true,
+      minLength: 8,
+      maxLength: 25,
+      isSubmit: password.value,
+    },
+  });
+  const userName = useInput({
+    initialValue: "",
+    validations: { isEmpty: true, minLength: 2, maxLength: 255 },
+  });
   const dispatch = useDispatch();
   return (
     <div className="sign-form">
@@ -26,9 +38,9 @@ const SignUP = () => {
             <input
               id="Name"
               value={userName.value}
-              onChange={(e) => userName.onChange(e)}
-              onBlur={(e) => userName.onBlur(e)}
-              onFocus={(e) => userName.onFocus(e)}
+              onChange={(e: React.ChangeEvent): void => userName.onChange(e)}
+              onBlur={(e: React.ChangeEvent): void => userName.onBlur(e)}
+              onFocus={(e: React.ChangeEvent): void => userName.onFocus(e)}
             />
             {userName.labelFocus ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -51,9 +63,9 @@ const SignUP = () => {
               id="Email"
               type="email"
               value={email.value}
-              onChange={(e) => email.onChange(e)}
-              onBlur={(e) => email.onBlur(e)}
-              onFocus={(e) => email.onFocus(e)}
+              onChange={(e: React.ChangeEvent): void => email.onChange(e)}
+              onBlur={(e: React.ChangeEvent): void => email.onBlur(e)}
+              onFocus={(e: React.ChangeEvent): void => email.onFocus(e)}
             />
             {email.labelFocus ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -76,9 +88,9 @@ const SignUP = () => {
               id="Password"
               value={password.value}
               type={password.typeVis}
-              onChange={(e) => password.onChange(e)}
-              onBlur={(e) => password.onBlur(e)}
-              onFocus={(e) => password.onFocus(e)}
+              onChange={(e: React.ChangeEvent): void => password.onChange(e)}
+              onBlur={(e: React.ChangeEvent): void => password.onBlur(e)}
+              onFocus={(e: React.ChangeEvent): void => password.onFocus(e)}
             />
             {password.labelFocus ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -92,7 +104,7 @@ const SignUP = () => {
             <button
               type="button"
               className="eye"
-              onClick={() => {
+              onClick={(): void => {
                 password.changeVis();
               }}>
               {password.typeVis === "password" ? (
@@ -116,9 +128,9 @@ const SignUP = () => {
               name="SubmitPassword"
               value={submitPassword.value}
               type={submitPassword.typeVis}
-              onChange={(e) => submitPassword.onChange(e)}
-              onBlur={(e) => submitPassword.onBlur(e)}
-              onFocus={(e) => submitPassword.onFocus(e)}
+              onChange={(e: React.ChangeEvent): void => submitPassword.onChange(e)}
+              onBlur={(e: React.ChangeEvent): void => submitPassword.onBlur(e)}
+              onFocus={(e: React.ChangeEvent): void => submitPassword.onFocus(e)}
             />
             {submitPassword.labelFocus ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -132,7 +144,7 @@ const SignUP = () => {
             <button
               type="button"
               className="eye"
-              onClick={() => {
+              onClick={(): void => {
                 submitPassword.changeVis();
               }}>
               {submitPassword.typeVis === "password" ? (
@@ -179,7 +191,7 @@ const SignUP = () => {
           Do you have an account yet?{" "}
           <a
             href="/#"
-            onClick={() => {
+            onClick={(): void => {
               dispatch(switchSign());
             }}>
             Sign in

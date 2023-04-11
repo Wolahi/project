@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { useSelector } from "react-redux";
-import SignIn from "./SignIn";
+import SignIn from "./SiginIn";
 import "../../../style/AuthPage.scss";
 import SignUP from "./SignUP";
 
-const AuthPage = () => {
-  const sign = useSelector((state) => state.auth.sign);
+const AuthPage = (): ReactElement => {
+  const sign = useSelector((state: any) => state.auth.sign);
 
-  useEffect(() => {
+  useEffect((): void => {
     localStorage.setItem("sign", sign);
   }, [sign]);
   return (

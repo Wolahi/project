@@ -1,0 +1,45 @@
+@import "variables";
+
+@mixin button-style {
+  font-family: $font-open-sans;
+  width: 86px;
+  height: 40px;
+  background: #F6F6F6;
+  color: #1B1A1D;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 3s, color 1s;
+}
+
+@mixin button-style-active {
+  @include button-style;
+
+  background: #1B1A1D;
+  color: #F6F6F6;
+  transition: background 0s, color 0s;
+}
+
+@mixin button-sign-in {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #FFF;
+  background: #1B1A1D;
+  border-radius: 6px;
+  width: 384px;
+  height: 60px;
+  cursor: pointer;
+  border: none;
+}
+
+@mixin link-font {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #0F0F0F;
+}

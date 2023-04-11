@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import SettingPage from "../../core/Settings/components/SettingPage";
 
-const Settings = () => {
+const Settings = (): ReactElement => {
   return <SettingPage />;
 };
 

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import useInput from "../../../hooks/Valid";
 import { switchSign } from "../../../../store/authReducer";
 
-const SignIn = () => {
-  const email = useInput("", { isEmpty: true, minLength: 7, maxLength: 25, isEmail: true });
-  const password = useInput("", { isEmpty: true, minLength: 8, maxLength: 25 });
+const SignIn = (): ReactElement => {
+  const email = useInput({
+    initialValue: "",
+    validations: { isEmpty: true, minLength: 7, maxLength: 25, isEmail: true },
+  });
+  const password = useInput({
+    initialValue: "",
+    validations: { isEmpty: true, minLength: 8, maxLength: 25 },
+  });
   const dispatch = useDispatch();
   return (
     <div className="sign-form">
@@ -20,9 +26,9 @@ const SignIn = () => {
               id="Email"
               value={email.value}
               type="email"
-              onChange={(e) => email.onChange(e)}
-              onBlur={(e) => email.onBlur(e)}
-              onFocus={(e) => email.onFocus(e)}
+              onChange={(e: React.ChangeEvent): void => email.onChange(e)}
+              onBlur={(e: React.ChangeEvent): void => email.onBlur(e)}
+              onFocus={(e: React.ChangeEvent): void => email.onFocus(e)}
             />
             {email.labelFocus ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -45,9 +51,9 @@ const SignIn = () => {
               id="Password"
               value={password.value}
               type={password.typeVis}
-              onChange={(e) => password.onChange(e)}
-              onBlur={(e) => password.onBlur(e)}
-              onFocus={(e) => password.onFocus(e)}
+              onChange={(e: React.ChangeEvent): void => password.onChange(e)}
+              onBlur={(e: React.ChangeEvent): void => password.onBlur(e)}
+              onFocus={(e: React.ChangeEvent): void => password.onFocus(e)}
             />
             {password.labelFocus ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -61,7 +67,7 @@ const SignIn = () => {
             <button
               type="button"
               className="eye"
-              onClick={() => {
+              onClick={(): void => {
                 password.changeVis();
               }}>
               {password.typeVis === "password" ? (
@@ -98,7 +104,7 @@ const SignIn = () => {
           Don’t have an account yet?{" "}
           <a
             href="/#"
-            onClick={() => {
+            onClick={(): void => {
               dispatch(switchSign());
             }}>
             Sign up

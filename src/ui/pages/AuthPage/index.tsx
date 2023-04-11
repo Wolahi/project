@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import AuthPage from "../../core/Auth/components/AuthPage";
 
-const Auth = () => {
+const Auth = (): ReactElement => {
   return <AuthPage />;
 };
 

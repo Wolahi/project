@@ -7,7 +7,7 @@
   "textarea textarea"
   "buttonSave buttonCansel";
 
-  .item_1 {
+  .item-1 {
     grid-area: textarea;
     border: none;
     resize: none;
@@ -17,11 +17,11 @@
     background: #F6F6F6;
   }
 
-  .item_2 {
+  .item-2 {
     grid-area: buttonSave;
   }
 
-  .item_3 {
+  .item-3 {
     grid-area: buttonCansel;
   }
 }

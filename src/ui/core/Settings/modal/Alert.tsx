@@ -1,9 +1,16 @@
-import React, { useEffect } from "react";
-import icon from "../icons/close-icon.svg";
+import React, { ReactElement, useEffect } from "react";
+import Icon from "../../../../assets/icons/close-icon.svg";
 import "../../../style/Alert.scss";
 
-// eslint-disable-next-line react/prop-types
-const Alert = ({ active, setActive, text }) => {
+const Alert = ({
+  active,
+  setActive,
+  text,
+}: {
+  active: boolean;
+  setActive: any;
+  text: string;
+}): ReactElement => {
   useEffect(() => {
     setTimeout(() => {
       setActive(false);
@@ -17,8 +24,8 @@ const Alert = ({ active, setActive, text }) => {
           <div className="alert-style">
             <div className="text-place">
               {text}
-              <button type="button" onClick={() => setActive(false)}>
-                <img src={icon} alt="" />
+              <button type="button" onClick={(): void => setActive(false)}>
+                <Icon />
               </button>
             </div>
           </div>
