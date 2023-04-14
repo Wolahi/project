@@ -29,11 +29,11 @@ const SignInView = (): ReactElement => {
             <input
               id="Email"
               type="email"
-              onAnimationStart={(e): void => {
-                valid.emailForLabel.handleAutoFill(e);
-              }}
               onClick={(): void => {
                 valid.emailForLabel.onFocus();
+              }}
+              onAnimationStart={(e): void => {
+                valid.emailForLabel.handleAutoFill(e);
               }}
               {...register("email", {
                 onChange: (e): void => {
