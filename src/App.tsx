@@ -1,11 +1,10 @@
 import { Provider } from "react-redux";
+import React, { ReactElement } from "react";
 import "./ui/style/Index.scss";
-import store from "./store/store.js";
-// import Auth from "./ui/pages/AuthPage";
-// import Settings from "./ui/pages/SettingsPage";
-import Auth from "./ui/pages/AuthPage";
+import store from "./store/store";
+import Auth from "./ui/pages/AuthPage/index";
 
-function App() {
+function App(): ReactElement {
   return (
     <Provider store={store}>
       <div>

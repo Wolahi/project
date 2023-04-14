@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import "../../../style/SettingPage.scss";
 import SettingModalPage from "../modal/SettingModalPage";
 import Alert from "../modal/Alert";
 
-const SettingPage = () => {
+const SettingPage = (): ReactElement => {
   const [showNicknameChange, setShowNicknameChange] = useState(false);
   const [showEmailChange, setShowEmailChange] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -23,7 +23,7 @@ const SettingPage = () => {
           ) : (
             <button
               type="button"
-              onClick={() => {
+              onClick={(): void => {
                 setTextAlert(`You changed your nickname`);
                 setShowAlert(true);
                 setShowNicknameChange(true);
@@ -43,7 +43,7 @@ const SettingPage = () => {
           ) : (
             <button
               type="button"
-              onClick={() => {
+              onClick={(): void => {
                 setTextAlert(`You changed your email`);
                 setShowAlert(true);
                 setShowEmailChange(true);
@@ -58,7 +58,7 @@ const SettingPage = () => {
           You can request a new password to your email
           <button
             type="button"
-            onClick={() => {
+            onClick={(): void => {
               setTextAlert(`A password reset link has been sent to your email`);
               setShowAlert(true);
             }}>
@@ -70,7 +70,7 @@ const SettingPage = () => {
           Permanently delete this account?
           <button
             type="button"
-            onClick={() => {
+            onClick={(): void => {
               setTextAlert(`You have deleted your account`);
               setShowAlert(true);
             }}>

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "watch": true,
+    "module": "commonjs",
+    "sourceMap": false,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "typeRoots": ["./src/@types", "./node_modules/@types"]
+  },
+  "include": [
+  "./src/**/*",
+    "prettier.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}

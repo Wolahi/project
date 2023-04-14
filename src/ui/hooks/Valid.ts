@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useValidation = (value, validations) => {
+const useValidation = ({ value, validations }: { value: string; validations: any }): any => {
   const [isEmpty, setEmptyError] = useState(true);
   const [minLengthError, setMinLengthError] = useState(false);
   const [maxLengthError, setMaxLengthError] = useState(false);
@@ -46,6 +46,7 @@ const useValidation = (value, validations) => {
             String(value)
               .toLowerCase()
               .match(
+                // eslint-disable-next-line max-len
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               )
           ) {
@@ -92,17 +93,17 @@ const useValidation = (value, validations) => {
   };
 };
 
-const useInput = (initialValue, validations) => {
+const useInput = ({ initialValue, validations }: { initialValue: any; validations: any }): any => {
   const [value, setValue] = useState(initialValue);
   const [typeVis, setTypeVis] = useState("password");
   const [isDirty, setDirty] = useState(false);
   const [labelFocus, setLabelFocus] = useState(false);
-  const valid = useValidation(value, validations);
-  const onFocus = () => {
+  const valid = useValidation({ value, validations });
+  const onFocus = (): void => {
     setLabelFocus(true);
   };
 
-  const changeVis = () => {
+  const changeVis = (): void => {
     if (typeVis === "password") {
       setTypeVis("text");
     } else {
@@ -110,12 +111,12 @@ const useInput = (initialValue, validations) => {
     }
   };
 
-  const onChange = (e) => {
+  const onChange = (e: any): void => {
     setValue(e.target.value);
     setDirty(false);
     e.target.style.border = "none";
   };
-  const onBlur = (e) => {
+  const onBlur = (e: any): void => {
     if (
       valid.isEmpty ||
       valid.minLengthError ||

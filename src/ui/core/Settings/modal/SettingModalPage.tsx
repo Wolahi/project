@@ -1,17 +1,17 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "../../../style/SettingModalPage.scss";
 
-const SettingModalPage = (props) => {
+const SettingModalPage = (props: any): ReactElement => {
   const modalProps = props;
   return (
     <div>
       {modalProps.show ? (
         <div className="setting-modal-page-style">
-          <textarea cols="30" className="item_1" required />
-          <button type="button" className="item_2">
+          <textarea cols={30} className="item-1" required />
+          <button type="button" className="item-2">
             Save
           </button>
-          <button type="button" className="item_3" onClick={() => modalProps.setShow(false)}>
+          <button type="button" className="item-3" onClick={(): void => modalProps.setShow(false)}>
             Cancel
           </button>
         </div>

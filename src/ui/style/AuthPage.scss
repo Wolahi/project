@@ -1,28 +1,5 @@
-@import 'https://fonts.googleapis.com/css2?family=DM+Sans&display=swap';
-@import "https://fonts.googleapis.com/css2?family=DM+Sans&display=swap";
-
-@mixin button-sign-in {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  color: #FFF;
-  background: #1B1A1D;
-  border-radius: 6px;
-  width: 384px;
-  height: 60px;
-  cursor: pointer;
-  border: none;
-}
-
-@mixin link-font {
-  font-family: 'Open Sans', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #0F0F0F;
-}
+@import "mixins";
+@import "variables";
 
 @media (max-width: 600px) {
   .auth-page{
@@ -110,7 +87,7 @@
       margin-bottom: 30px;
 
       .head {
-        font-family: 'Montserrat', sans-serif;
+        font-family:'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
@@ -140,6 +117,7 @@
 
       .sign {
         margin: 28px 0;
+
         .link-forgot{
           @include link_font
 
@@ -214,6 +192,7 @@
 
     .change-form-text {
       text-align: center;
+
       @include link_font
     }
   }
