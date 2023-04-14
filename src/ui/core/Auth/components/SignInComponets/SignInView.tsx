@@ -24,10 +24,14 @@ const SignInView = (): ReactElement => {
           <span>Sign in to --- TODO ---</span>
         </div>
         <div className="sign">
-          <div className="input-block">
+          <label htmlFor="Email" className="input-block">
+            <span className={valid.emailForLabel.topLabel ? "label-top" : "hide"}>Email</span>
             <input
               id="Email"
               type="email"
+              onAnimationStart={(e): void => {
+                valid.emailForLabel.handleAutoFill(e);
+              }}
               onClick={(): void => {
                 valid.emailForLabel.onFocus();
               }}
@@ -40,25 +44,20 @@ const SignInView = (): ReactElement => {
                 },
               })}
             />
-            {valid.emailForLabel.topLabel ? (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="label-top" htmlFor="Email">
-                Email
-              </label>
-            ) : (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="Email">Email</label>
-            )}
-          </div>
+          </label>
           {errors.email ? (
             <div className="error">{errors.email.message}</div>
           ) : (
             <div style={{ height: "16px" }} />
           )}
-          <div className="input-block">
+          <label htmlFor="Password" className="input-block">
+            <span className={valid.passwordForLabel.topLabel ? "label-top" : "hide"}>Password</span>
             <input
               id="Password"
               type={valid.passwordVisibility.typeVis}
+              onAnimationStart={(e): void => {
+                valid.passwordForLabel.handleAutoFill(e);
+              }}
               onClick={(): void => {
                 valid.passwordForLabel.onFocus();
               }}
@@ -71,15 +70,6 @@ const SignInView = (): ReactElement => {
                 },
               })}
             />
-            {valid.passwordForLabel.topLabel ? (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="label-top" htmlFor="Email">
-                Password
-              </label>
-            ) : (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="Email">Password</label>
-            )}
             <button
               type="button"
               className="eye"
@@ -92,7 +82,7 @@ const SignInView = (): ReactElement => {
                 <AiOutlineEye size={25} />
               )}
             </button>
-          </div>
+          </label>
           {errors.password ? (
             <div className="error">{errors.password.message}</div>
           ) : (

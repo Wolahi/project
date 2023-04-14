@@ -84,7 +84,7 @@
       background-color: white;
       border-radius: 5%;
       height: auto;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
 
       .head {
         font-family:'Montserrat', sans-serif;
@@ -116,11 +116,12 @@
 
 
       .sign {
-        margin: 28px 0;
+        margin: 10px 0;
 
         .link-forgot{
-          @include link_font
+          @include link_font;
 
+          font-size: 16px;
         }
 
         .error {
@@ -137,8 +138,10 @@
         .input-block {
           height: 60px;
           position: relative;
+          display: flex;
+          flex-direction: column;
 
-          label {
+          .hide {
             display: block;
             position: absolute;
             margin-left: 15px;
@@ -151,10 +154,30 @@
             color: #757575;
             cursor: text;
           }
+          @keyframes onAutoFillStart {
+          }
 
+          @keyframes onAutoFillCancel {
+          }
+          input:-webkit-autofill {
+            animation-name: onAutoFillStart;
+            transition: background-color 50000s ease-in-out 0s;
+          }
+
+          input:not(:-webkit-autofill) {
+            animation-name: onAutoFillCancel;
+          }
           .label-top{
+            margin-left: 15px;
+            display: block;
+            position: absolute;
             font-size: 12px;
             margin-top: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            color: #757575;
+            cursor: text;
           }
 
           input {
@@ -193,7 +216,7 @@
     .change-form-text {
       text-align: center;
 
-      @include link_font
+      @include link-font
     }
   }
 }
