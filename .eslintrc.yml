@@ -6,7 +6,7 @@ env:
   es2021: true
 settings:
   import/resolver:
-    node: { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }
+    node: { 'extensions': ['.ts', '.tsx'] }
 extends:
   - plugin:react/recommended
   - airbnb

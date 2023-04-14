@@ -10,7 +10,8 @@
     "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
   "include": [
-  "./src/**/*"
+  "./src/**/*",
+    "prettier.config.js"
   ],
   "exclude": [
     "node_modules",
