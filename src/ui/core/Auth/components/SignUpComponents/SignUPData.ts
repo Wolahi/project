@@ -1,24 +1,26 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Schema } from "yup";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import useLabel from "../hooks/useLabel";
+import useChangeVis from "../hooks/useChangeVis";
 
-const schemaRegister: Schema = yup.object({
-  userName: yup
-    .string()
-    .required("This field cannot be empty")
-    .min(2, "Please enter at least 2 characters"),
-  email: yup.string().required("This field cannot be empty").email("Please enter valid email"),
-  password: yup
-    .string()
-    .required("This field cannot be empty")
-    .min(8, "Please enter at least 8 characters"),
-  submitPassword: yup
-    .string()
-    .required("This field cannot be empty")
-    .min(8, "Please enter at least 8 characters")
-    .oneOf([yup.ref("password")], "Passwords must match"),
-});
-type FormDataReg = yup.InferType<typeof schemaRegister>;
+const useDataReg = (): any => {
+  const dispatch = useDispatch();
+  const userNameForLabel = useLabel("");
+  const emailForLabel = useLabel("");
+  const passwordForLabel = useLabel("");
+  const submitPasForLabel = useLabel("");
+  const passwordVisibility = useChangeVis();
+  const submitPasVisibility = useChangeVis();
+  return {
+    dispatch,
+    userNameForLabel,
+    emailForLabel,
+    passwordForLabel,
+    submitPasForLabel,
+    passwordVisibility,
+    submitPasVisibility,
+  };
+};
 
-export { schemaRegister, FormDataReg };
+export default useDataReg;

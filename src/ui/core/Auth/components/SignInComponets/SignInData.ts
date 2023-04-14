@@ -1,15 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import useLabel from "../hooks/useLabel";
+import useChangeVis from "../hooks/useChangeVis";
 
-const schemaLogin = yup
-  .object({
-    email: yup.string().required("This field cannot be empty").email("Please enter valid email"),
-    password: yup
-      .string()
-      .required("This field cannot be empty")
-      .min(8, "Please enter at least 8 characters"),
-  })
-  .required();
-type FormDataLogin = yup.InferType<typeof schemaLogin>;
+const useDataLogin = (): any => {
+  const dispatch = useDispatch();
+  const emailForLabel = useLabel("");
+  const passwordForLabel = useLabel("");
+  const passwordVisibility = useChangeVis();
+  return { dispatch, emailForLabel, passwordForLabel, passwordVisibility };
+};
 
-export { schemaLogin, FormDataLogin };
+export default useDataLogin;

@@ -1,9 +1,8 @@
 import React, { ReactElement, useEffect } from "react";
 import { useSelector } from "react-redux";
-// import SignIn from "./SiginIn";
 import "../../../style/AuthPage.scss";
-// import SignUP from "./SignUP";
 import SignInView from "./SignInComponets/SignInView";
+import SignUpView from "./SignUpComponents/SignUpView";
 
 const AuthPage = (): ReactElement => {
   const sign = useSelector((state: any) => state.auth.sign);
@@ -14,9 +13,9 @@ const AuthPage = (): ReactElement => {
   return (
     <div className="auth-page">
       <div className="logo">LOGO</div>
-      <SignInView />
+      {sign ? <SignInView /> : <SignUpView />}
     </div>
   );
 };
-/* {sign ? <SignIn /> : <SignUP />} */
+
 export default AuthPage;
