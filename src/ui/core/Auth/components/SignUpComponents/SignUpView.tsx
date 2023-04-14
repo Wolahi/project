@@ -24,10 +24,14 @@ const SignInView = (): ReactElement => {
           <span>Sign up to --- TODO ---</span>
         </div>
         <div className="sign">
-          <div className="input-block">
+          <label htmlFor="Name" className="input-block">
+            <span className={valid.userNameForLabel.topLabel ? "label-top" : "hide"}>Name</span>
             <input
               id="Name"
               type="text"
+              onAnimationStart={(e): void => {
+                valid.userNameForLabel.handleAutoFill(e);
+              }}
               onClick={(): void => {
                 valid.userNameForLabel.onFocus();
               }}
@@ -40,25 +44,20 @@ const SignInView = (): ReactElement => {
                 },
               })}
             />
-            {valid.userNameForLabel.topLabel ? (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="label-top" htmlFor="Name">
-                Name
-              </label>
-            ) : (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="Name">Name</label>
-            )}
-          </div>
+          </label>
           {errors.userName ? (
             <div className="error">{errors.userName.message}</div>
           ) : (
             <div style={{ height: "16px" }} />
           )}
-          <div className="input-block">
+          <label htmlFor="Email" className="input-block">
+            <span className={valid.emailForLabel.topLabel ? "label-top" : "hide"}>Email</span>
             <input
               id="Email"
               type="email"
+              onAnimationStart={(e): void => {
+                valid.emailForLabel.handleAutoFill(e);
+              }}
               onClick={(): void => {
                 valid.emailForLabel.onFocus();
               }}
@@ -71,25 +70,20 @@ const SignInView = (): ReactElement => {
                 },
               })}
             />
-            {valid.emailForLabel.topLabel ? (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="label-top" htmlFor="Email">
-                Email
-              </label>
-            ) : (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="Email">Email</label>
-            )}
-          </div>
+          </label>
           {errors.email ? (
             <div className="error">{errors.email.message}</div>
           ) : (
             <div style={{ height: "16px" }} />
           )}
-          <div className="input-block">
+          <label htmlFor="Password" className="input-block">
+            <span className={valid.passwordForLabel.topLabel ? "label-top" : "hide"}>Password</span>
             <input
               id="Password"
               type={valid.passwordVisibility.typeVis}
+              onAnimationStart={(e): void => {
+                valid.passwordForLabel.handleAutoFill(e);
+              }}
               onClick={(): void => {
                 valid.passwordForLabel.onFocus();
               }}
@@ -102,15 +96,6 @@ const SignInView = (): ReactElement => {
                 },
               })}
             />
-            {valid.passwordForLabel.topLabel ? (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="label-top" htmlFor="Password">
-                Password
-              </label>
-            ) : (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="Password">Password</label>
-            )}
             <button
               type="button"
               className="eye"
@@ -123,16 +108,22 @@ const SignInView = (): ReactElement => {
                 <AiOutlineEye size={25} />
               )}
             </button>
-          </div>
+          </label>
           {errors.password ? (
             <div className="error">{errors.password.message}</div>
           ) : (
             <div style={{ height: "12px" }} />
           )}
-          <div className="input-block">
+          <label htmlFor="SubmitPassword" className="input-block">
+            <span className={valid.submitPasForLabel.topLabel ? "label-top" : "hide"}>
+              Submit Password
+            </span>
             <input
               id="SubmitPassword"
               type={valid.submitPasVisibility.typeVis}
+              onAnimationStart={(e): void => {
+                valid.submitPasForLabel.handleAutoFill(e);
+              }}
               onClick={(): void => {
                 valid.submitPasForLabel.onFocus();
               }}
@@ -145,15 +136,6 @@ const SignInView = (): ReactElement => {
                 },
               })}
             />
-            {valid.submitPasForLabel.topLabel ? (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="label-top" htmlFor="SubmitPassword">
-                Submit Password
-              </label>
-            ) : (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="SubmitPassword">Submit Password</label>
-            )}
             <button
               type="button"
               className="eye"
@@ -166,14 +148,14 @@ const SignInView = (): ReactElement => {
                 <AiOutlineEye size={25} />
               )}
             </button>
-          </div>
+          </label>
           {errors.submitPassword ? (
             <div className="error">{errors.submitPassword.message}</div>
           ) : (
             <div style={{ height: "12px" }} />
           )}
           <button type="submit" className="button-enable">
-            Sign In
+            Sign Up
           </button>
         </div>
       </form>
@@ -185,7 +167,7 @@ const SignInView = (): ReactElement => {
             onClick={(): void => {
               valid.dispatch(switchSign());
             }}>
-            Sign up
+            Sign in
           </a>{" "}
         </span>
       </div>
