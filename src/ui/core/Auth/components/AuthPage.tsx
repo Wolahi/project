@@ -6,7 +6,6 @@ import SignUpView from "./SignUpComponents/SignUpView";
 
 const AuthPage = (): ReactElement => {
   const sign = useSelector((state: any) => state.auth.sign);
-
   useEffect((): void => {
     localStorage.setItem("sign", sign);
   }, [sign]);
