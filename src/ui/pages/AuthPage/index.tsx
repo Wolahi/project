@@ -2,13 +2,21 @@ import React, { ReactElement } from "react";
 import AuthPage from "../../core/Auth/components/AuthPage";
 import { TranslationProvider } from "../../../libs/TranslitionProvaider/TranslationProvider";
 
-interface AuthProps {
-  translation: Record<string, string>;
-  lang: string;
-}
-const Auth = ({ translation, lang }: AuthProps): ReactElement => {
+import lang from "./en.json";
+
+/* export const getServerSideProps: any = async () => {
+  const lang = "en";
+  const translation =
+  return {
+    props: {
+      translation: translation.text,
+      lang,
+    },
+  };
+}; */
+const Auth = (): ReactElement => {
   return (
-    <TranslationProvider translations={translation} lang={lang}>
+    <TranslationProvider translations={lang}>
       <AuthPage />
     </TranslationProvider>
   );

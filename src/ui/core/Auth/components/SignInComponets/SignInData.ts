@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useDispatch } from "react-redux";
-import useLabel from "../hooks/useLabel";
-import useChangeVis from "../hooks/useChangeVis";
+import useLabel from "../../../../hooks/useLabel";
+import useChangeVis from "../../../../hooks/useChangeVis";
 
 const useDataLogin = (): any => {
   const dispatch = useDispatch();

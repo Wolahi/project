@@ -1,32 +1,45 @@
 import * as yup from "yup";
+import { useTranslations } from "../../../../libs/TranslitionProvaider/TranslationProvider";
 
-const schemaLogin = yup
-  .object({
-    email: yup.string().required("This field cannot be empty").email("Please enter valid email"),
+const useSchemasValid = (): any => {
+  const translate = useTranslations();
+  const schemaLogin = yup
+    .object({
+      email: yup
+        .string()
+        .required(`${translate.text.emptyField}`)
+        .email(`${translate.text.emailError}`),
+      password: yup
+        .string()
+        .required(`${translate.text.emptyField}`)
+        .min(8, `${translate.text.minLengthError8}`),
+    })
+    .required();
+
+  const schemaRegister = yup.object({
+    userName: yup
+      .string()
+      .required(`${translate.text.emptyField}`)
+      .min(2, `${translate.text.minLengthError2}`),
+    email: yup
+      .string()
+      .required(`${translate.text.emptyField}`)
+      .email(`${translate.text.emailError}`),
     password: yup
       .string()
-      .required("This field cannot be empty")
-      .min(8, "Please enter at least 8 characters"),
-  })
-  .required();
+      .required(`${translate.text.emptyField}`)
+      .min(8, `${translate.text.minLengthError8}`),
+    submitPassword: yup
+      .string()
+      .required(`${translate.text.emptyField}`)
+      .min(8, `${translate.text.minLengthError8}`)
+      .oneOf([yup.ref("password")], `${translate.text.passMustBeMatch}`),
+  });
 
-type FormDataLogin = yup.InferType<typeof schemaLogin>;
-const schemaRegister = yup.object({
-  userName: yup
-    .string()
-    .required("This field cannot be empty")
-    .min(2, "Please enter at least 2 characters"),
-  email: yup.string().required("This field cannot be empty").email("Please enter valid email"),
-  password: yup
-    .string()
-    .required("This field cannot be empty")
-    .min(8, "Please enter at least 8 characters"),
-  submitPassword: yup
-    .string()
-    .required("This field cannot be empty")
-    .min(8, "Please enter at least 8 characters")
-    .oneOf([yup.ref("password")], "Passwords must match"),
-});
-type FormDataReg = yup.InferType<typeof schemaRegister>;
+  return {
+    schemaLogin,
+    schemaRegister,
+  };
+};
 
-export { schemaLogin, schemaRegister, FormDataReg, FormDataLogin };
+export default useSchemasValid;

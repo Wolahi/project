@@ -3,29 +3,36 @@ import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import * as yup from "yup";
 import useDataLogin from "./SignInData";
-import { schemaLogin, FormDataLogin } from "../../utils/shemasYup";
+import useSchemasValid from "../../utils/shemasYup";
 import { switchSign } from "../../../../../store/authReducer";
+import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
 
 const SignInView = (): ReactElement => {
   const valid = useDataLogin();
+  const translations = useTranslations();
+  const schemas = useSchemasValid();
+  type FormDataLogin = yup.InferType<typeof schemas.schemaLogin>;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormDataLogin>({
-    resolver: yupResolver(schemaLogin),
+    resolver: yupResolver(schemas.schemaLogin),
   });
   const onSubmit = (data: FormDataLogin): void => console.log(data);
   return (
     <div className="sign-form">
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <div className="head">
-          <span>Sign in to --- TODO ---</span>
+          <span>{translations.text.signInHead}</span>
         </div>
         <div className="sign">
           <label htmlFor="Email" className="input-block">
-            <span className={valid.emailForLabel.topLabel ? "label-top" : "hide"}>Email</span>
+            <span className={valid.emailForLabel.topLabel ? "label-top" : "hide"}>
+              {translations.text.email}
+            </span>
             <input
               id="Email"
               type="email"
@@ -44,12 +51,14 @@ const SignInView = (): ReactElement => {
             />
           </label>
           {errors.email ? (
-            <div className="error">{errors.email.message}</div>
+            <div className="error">{errors.email.message as string}</div>
           ) : (
             <div style={{ height: "16px" }} />
           )}
           <label htmlFor="Password" className="input-block">
-            <span className={valid.passwordForLabel.topLabel ? "label-top" : "hide"}>Password</span>
+            <span className={valid.passwordForLabel.topLabel ? "label-top" : "hide"}>
+              {translations.text.password}
+            </span>
             <input
               id="Password"
               type={valid.passwordVisibility.typeVis}
@@ -80,27 +89,27 @@ const SignInView = (): ReactElement => {
             </button>
           </label>
           {errors.password ? (
-            <div className="error">{errors.password.message}</div>
+            <div className="error">{errors.password.message as string}</div>
           ) : (
             <div style={{ height: "12px" }} />
           )}
           <div className="link-forgot">
-            <a href="/#">Forgot your password?</a>
+            <a href="/#">{translations.text.forgotPas}</a>
           </div>
         </div>
         <button type="submit" className="button-enable">
-          Sign In
+          {translations.text.signIn}
         </button>
       </form>
       <div className="change-form-text">
         <span>
-          Don’t have an account yet?{" "}
+          {translations.text.dontHaveAcc}{" "}
           <a
             href="/#"
             onClick={(): void => {
               valid.dispatch(switchSign());
             }}>
-            Sign up
+            {translations.text.signUp}
           </a>{" "}
         </span>
       </div>

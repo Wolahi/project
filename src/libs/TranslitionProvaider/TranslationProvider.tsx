@@ -1,27 +1,22 @@
 import { createContext, useContext } from "react";
 
-export type TranslitionContextProps = {
-  translations: Record<string, string>;
-  lang: string;
+export type TranslationContextProps = {
+  translations: any;
+  // lang: string;
 };
-const TranslationContext = createContext<TranslitionContextProps>({
+const TranslationContext = createContext<TranslationContextProps>({
   translations: {},
-  lang: "en",
+  // lang: "en",
 });
 
 interface IProps {
   children: JSX.Element;
-  translations: TranslitionContextProps["translations"];
-  lang: string;
+  translations: TranslationContextProps["translations"];
+  // lang: string;
 }
 
 export const useTranslations = (): any => useContext(TranslationContext);
 
-export const TranslationProvider = ({ children, translations, lang }: IProps): any => {
-  return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <TranslationContext.Provider value={{ translations, lang }}>
-      {children}
-    </TranslationContext.Provider>
-  );
+export const TranslationProvider = ({ children, translations }: IProps): any => {
+  return <TranslationContext.Provider value={translations}>{children}</TranslationContext.Provider>;
 };
