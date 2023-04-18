@@ -6,11 +6,9 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import useDataLogin from "./SignInData";
 import { schemaLogin, FormDataLogin } from "../../utils/shemasYup";
 import { switchSign } from "../../../../../store/authReducer";
-import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
 
 const SignInView = (): ReactElement => {
   const valid = useDataLogin();
-  const translation = useTranslations();
   const {
     register,
     handleSubmit,
@@ -23,7 +21,7 @@ const SignInView = (): ReactElement => {
     <div className="sign-form">
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <div className="head">
-          <span>{translation.text.signInHead}</span>
+          <span>Sign in to --- TODO ---</span>
         </div>
         <div className="sign">
           <label htmlFor="Email" className="input-block">
