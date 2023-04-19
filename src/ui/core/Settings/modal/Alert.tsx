@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from "react";
-import Icon from "../../../../assets/icons/close-icon.svg";
 import "../../../style/Alert.scss";
+import CloseSVG from "./CloseSVG";
 
 const Alert = ({
   active,
@@ -25,7 +25,7 @@ const Alert = ({
             <div className="text-place">
               {text}
               <button type="button" onClick={(): void => setActive(false)}>
-                <Icon />
+                <CloseSVG id="svgClose" />
               </button>
             </div>
           </div>
