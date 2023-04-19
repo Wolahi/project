@@ -1,23 +1,15 @@
 import React, { ReactElement } from "react";
+import { Link } from "react-router-dom";
 import styles from "../AuthPage.module.scss";
-import { switchSign } from "../../../../../store/authReducer";
-import useData from "../AuthPageData";
 
 const SwitchLogReg = (props: any): ReactElement => {
   const { text } = props;
   const { sign } = props;
-  const valid = useData();
+  const { path } = props;
   return (
     <div className={styles["change-form-text"]}>
       <span>
-        {text}{" "}
-        <a
-          href="/#"
-          onClick={(): void => {
-            valid.dispatch(switchSign());
-          }}>
-          {sign}
-        </a>{" "}
+        {text} <Link to={path}>{sign}</Link>{" "}
       </span>
     </div>
   );

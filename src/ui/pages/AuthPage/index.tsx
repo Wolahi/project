@@ -4,16 +4,6 @@ import { TranslationProvider } from "../../../libs/TranslitionProvaider/Translat
 
 import lang from "./en.json";
 
-/* export const getServerSideProps: any = async () => {
-  const lang = "en";
-  const translation =
-  return {
-    props: {
-      translation: translation.text,
-      lang,
-    },
-  };
-}; */
 const Auth = (): ReactElement => {
   return (
     <TranslationProvider translations={lang}>

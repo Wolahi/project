@@ -23,23 +23,30 @@ const SignUpView = (): ReactElement => {
   const onSubmit = (data: FormDataReg): void => console.log(data);
 
   return (
-    <FormProvider {...methods}>
-      <div className={styles["sign-form"]}>
-        <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className={styles.head}>
-            <span>{translations.text.signInHead}</span>
-          </div>
-          <div className={styles.sign}>
-            <InputUserName />
-            <InputEmail />
-            <InputPass />
-            <InputSubmitPass />
-            <ButtonForgot sign={translations.text.signUp} signUp />
-          </div>
-        </form>
-        <SwitchLogReg text={translations.text.doHaveAcc} sign={translations.text.signIn} />
-      </div>
-    </FormProvider>
+    <div className={styles["auth-page"]}>
+      <div className={styles.logo}>LOGO</div>
+      <FormProvider {...methods}>
+        <div className={styles["sign-form"]}>
+          <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+            <div className={styles.head}>
+              <span>{translations.text.signInHead}</span>
+            </div>
+            <div className={styles.sign}>
+              <InputUserName />
+              <InputEmail />
+              <InputPass />
+              <InputSubmitPass />
+              <ButtonForgot sign={translations.text.signUp} signUp />
+            </div>
+          </form>
+          <SwitchLogReg
+            text={translations.text.doHaveAcc}
+            path="/signIn"
+            sign={translations.text.signIn}
+          />
+        </div>
+      </FormProvider>
+    </div>
   );
 };
 

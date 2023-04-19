@@ -20,21 +20,28 @@ const SignInView = (): ReactElement => {
   });
   const onSubmit = (data: FormDataLogin): void => console.log(data);
   return (
-    <FormProvider {...methods}>
-      <div className={styles["sign-form"]}>
-        <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className={styles.head}>
-            <span>{translations.text.signInHead}</span>
-          </div>
-          <div className={styles.sign}>
-            <InputEmail />
-            <InputPass />
-            <ButtonForgot sign={translations.text.signIn} signUp={false} />
-          </div>
-        </form>
-        <SwitchLogReg text={translations.text.dontHaveAcc} sign={translations.text.signUp} />
-      </div>
-    </FormProvider>
+    <div className={styles["auth-page"]}>
+      <div className={styles.logo}>LOGO</div>
+      <FormProvider {...methods}>
+        <div className={styles["sign-form"]}>
+          <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+            <div className={styles.head}>
+              <span>{translations.text.signInHead}</span>
+            </div>
+            <div className={styles.sign}>
+              <InputEmail />
+              <InputPass />
+              <ButtonForgot sign={translations.text.signIn} signUp={false} />
+            </div>
+          </form>
+          <SwitchLogReg
+            text={translations.text.dontHaveAcc}
+            path="/signUp"
+            sign={translations.text.signUp}
+          />
+        </div>
+      </FormProvider>
+    </div>
   );
 };
 export default SignInView;
