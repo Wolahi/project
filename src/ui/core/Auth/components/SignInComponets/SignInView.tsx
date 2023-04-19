@@ -36,7 +36,7 @@ const SignInView = (): ReactElement => {
           </form>
           <SwitchLogReg
             text={translations.text.dontHaveAcc}
-            path="/signUp"
+            path="/auth/signUp"
             sign={translations.text.signUp}
           />
         </div>

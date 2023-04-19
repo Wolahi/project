@@ -5,22 +5,28 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { RouterProvider } from "react-router";
-import SignInView from "./ui/core/Auth/components/SignInComponets/SignInView";
-import SignUpView from "./ui/core/Auth/components/SignUpComponents/SignUpView";
 import "./ui/style/Index.scss";
 import Settings from "./ui/pages/SettingsPage";
-import lang from "./ui/pages/AuthPage/en.json";
-import { TranslationProvider } from "./libs/TranslitionProvaider/TranslationProvider";
+import Auth from "./ui/pages/AuthPage";
+import SignInView from "./ui/core/Auth/components/SignInComponets/SignInView";
+import SignUpView from "./ui/core/Auth/components/SignUpComponents/SignUpView";
 
 const router = createBrowserRouter([
   {
-    path: "/signUp",
-    element: <SignUpView />,
+    path: "/auth",
+    element: <Auth />,
+    children: [
+      {
+        path: "signIn",
+        element: <SignInView />,
+      },
+      {
+        path: "signUp",
+        element: <SignUpView />,
+      },
+    ],
   },
-  {
-    path: "/signIn",
-    element: <SignInView />,
-  },
+
   {
     path: "/settings",
     element: <Settings />,
@@ -28,9 +34,7 @@ const router = createBrowserRouter([
 ]);
 const root: Root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <TranslationProvider translations={lang}>
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </TranslationProvider>,
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>,
 );

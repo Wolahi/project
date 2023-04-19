@@ -1,13 +1,12 @@
 import React, { ReactElement } from "react";
-import AuthPageView from "../../core/Auth/components/AuthPageView";
-import { TranslationProvider } from "../../../libs/TranslitionProvaider/TranslationProvider";
-
+import { Outlet } from "react-router";
 import lang from "./en.json";
+import { TranslationProvider } from "../../../libs/TranslitionProvaider/TranslationProvider";
 
 const Auth = (): ReactElement => {
   return (
     <TranslationProvider translations={lang}>
-      <AuthPageView />
+      <Outlet />
     </TranslationProvider>
   );
 };
