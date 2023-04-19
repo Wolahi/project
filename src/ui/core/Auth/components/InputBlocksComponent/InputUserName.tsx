@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useFormContext } from "react-hook-form";
 import styles from "../AuthPage.module.scss";
-import useDataReg from "../SignUpComponents/SignUPData";
+import useData from "../AuthPageData";
 import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
 
 const InputUserName = (): ReactElement => {
@@ -10,7 +10,7 @@ const InputUserName = (): ReactElement => {
     register,
     formState: { errors },
   } = useFormContext();
-  const valid = useDataReg();
+  const valid = useData();
   const translation = useTranslations();
   return (
     <div>

@@ -3,7 +3,7 @@ import React, { ReactElement } from "react";
 import { useFormContext } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../AuthPage.module.scss";
-import useDataReg from "../SignUpComponents/SignUPData";
+import useData from "../AuthPageData";
 import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
 
 const InputPass = (): ReactElement => {
@@ -11,7 +11,7 @@ const InputPass = (): ReactElement => {
     register,
     formState: { errors },
   } = useFormContext();
-  const valid = useDataReg();
+  const valid = useData();
   const translation = useTranslations();
   return (
     <div>

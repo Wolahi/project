@@ -4,7 +4,7 @@ import SignInView from "./SignInComponets/SignInView";
 import SignUpView from "./SignUpComponents/SignUpView";
 import styles from "./AuthPage.module.scss";
 
-const AuthPage = (): ReactElement => {
+const AuthPageView = (): ReactElement => {
   const sign = useSelector((state: any) => state.auth.sign);
   useEffect((): void => {
     localStorage.setItem("sign", sign);
@@ -17,4 +17,4 @@ const AuthPage = (): ReactElement => {
   );
 };
 
-export default AuthPage;
+export default AuthPageView;
