@@ -32,6 +32,13 @@
       button {
         border: none;
         cursor: pointer;
+        svg{
+          fill: white;
+          transition: 0.4s;
+          &:hover{
+            background-color: red;
+          }
+        }
       }
     }
   }
