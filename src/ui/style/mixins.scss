@@ -1,6 +1,6 @@
 @import "variables";
 
-@mixin button-style {
+@mixin SettingsButtonStyle {
   font-family: $font-open-sans;
   width: 86px;
   height: 40px;
@@ -10,15 +10,13 @@
   outline: none;
   cursor: pointer;
   border-radius: 6px;
-  transition: background 3s, color 1s;
 }
 
-@mixin button-style-active {
-  @include button-style;
-
+@mixin SettingsButtonStyleHover {
+  @include SettingsButtonStyle;
   background: #1B1A1D;
   color: #F6F6F6;
-  transition: background 0s, color 0s;
+  transition: background-color .2s, color .2s;
 }
 
 @mixin button-sign-in {

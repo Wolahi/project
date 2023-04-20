@@ -1,7 +1,7 @@
-import React, { ReactElement, useState } from "react";
-import "../../../style/SettingPage.scss";
-import SettingModalPage from "../modal/SettingModalPage";
-import Alert from "../modal/Alert";
+import { ReactElement, useState } from "react";
+import SettingModalPage from "./modal/SettingModalPage";
+import styles from "./SettingPage.module.scss";
+import Alert from "./modal/Alert";
 
 const SettingPage = (): ReactElement => {
   const [showNicknameChange, setShowNicknameChange] = useState(false);
@@ -11,68 +11,72 @@ const SettingPage = (): ReactElement => {
 
   return (
     <div>
-      <div className="setting-page-style">
+      <div className={styles.settingPageStyle}>
         <h1>Settings</h1>
-        <div className="text-block">
+        <div className={styles.textBlock}>
           <h2>User nickname</h2>
           <div>
-            Yor nickname is <span className="text-bold">mr.ananasick</span>
+            Yor nickname is <b>mr.ananasick</b>
           </div>
-          {showNicknameChange ? (
-            <div />
-          ) : (
+          {!showNicknameChange && (
             <button
               type="button"
               onClick={(): void => {
-                setTextAlert(`You changed your nickname`);
-                setShowAlert(true);
                 setShowNicknameChange(true);
               }}>
               Change
             </button>
           )}
-          <SettingModalPage show={showNicknameChange} setShow={setShowNicknameChange} />
+          <SettingModalPage
+            show={showNicknameChange}
+            setShow={setShowNicknameChange}
+            setShowAlert={setShowAlert}
+            setTextAlert={setTextAlert}
+            text="You changed your nickname"
+          />
         </div>
-        <div className="text-block">
+        <div className={styles.textBlock}>
           <h2>Email address</h2>
           <div>
-            Your email address is <span className="text-bold">test@email.com</span>
+            Your email address is <b>test@email.com</b>
           </div>
-          {showEmailChange ? (
-            <div />
-          ) : (
+          {!showEmailChange && (
             <button
               type="button"
               onClick={(): void => {
-                setTextAlert(`You changed your email`);
-                setShowAlert(true);
                 setShowEmailChange(true);
               }}>
               Change
             </button>
           )}
-          <SettingModalPage show={showEmailChange} setShow={setShowEmailChange} />
+          <SettingModalPage
+            show={showEmailChange}
+            setShow={setShowEmailChange}
+            setShowAlert={setShowAlert}
+            setTextAlert={setTextAlert}
+            text="You changed your email"
+          />
         </div>
-        <div className="text-block">
+        <div className={styles.textBlock}>
           <h2>Password</h2>
           You can request a new password to your email
           <button
             type="button"
             onClick={(): void => {
-              setTextAlert(`A password reset link has been sent to your email`);
               setShowAlert(true);
+              setTextAlert("Вы изменили свой пароль");
             }}>
             Request
           </button>
         </div>
-        <div className="text-block">
+        <div className={styles.textBlock}>
           <h2>Delete account</h2>
           Permanently delete this account?
           <button
             type="button"
             onClick={(): void => {
-              setTextAlert(`You have deleted your account`);
               setShowAlert(true);
+              setTextAlert("Вы удалили свою учетную запись");
             }}>
             Delete
           </button>

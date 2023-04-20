@@ -1,14 +1,14 @@
-.setting-modal-page-style {
+.settingModalPageStyle {
   display: grid;
   grid-template-columns: 65px 1fr;
   row-gap: 8px;
   column-gap: 30px;
   grid-template-areas:
-  "textarea textarea"
-  "buttonSave buttonCansel";
+  "input input"
+  "Save Cansel";
 
-  .item-1 {
-    grid-area: textarea;
+  .input {
+    grid-area: input;
     border: none;
     resize: none;
     border-radius: 6px;
@@ -17,11 +17,11 @@
     background: #F6F6F6;
   }
 
-  .item-2 {
-    grid-area: buttonSave;
+  .ыave {
+    grid-area: Save;
   }
 
-  .item-3 {
-    grid-area: buttonCansel;
+  .сansel {
+    grid-area: Cansel;
   }
 }

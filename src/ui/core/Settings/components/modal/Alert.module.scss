@@ -1,0 +1,58 @@
+@import "../../../../style/variables.scss";
+
+.alertPosition {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  .alert {
+    font-family: $font-open-sans;
+    margin: 0 auto;
+    margin-bottom: 32px;
+    background-color: #0F0F0F;
+    height: 58px;
+    width: 340px;
+    border-radius: 16px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .text {
+      font-size: 14px;
+      margin-left: 24px;
+    }
+
+    button {
+      position: relative;
+      margin-right: 32px;
+      border: none;
+      background-color: #0F0F0F;
+      transition: 0.3s;
+        
+      .svgClose {
+        position: absolute;
+      }
+      
+      .svgClose:before, .svgClose:after {
+        content: "";
+        cursor: pointer;
+        position: absolute;
+        width: 20px; 
+        height: 2.3px; 
+        background: white;
+      }
+
+      .svgClose:before {
+        transform: rotate(45deg);
+      }
+      
+      .svgClose:after {
+        transform: rotate(-45deg);
+      }
+      .svgClose:hover::before, .svgClose:hover::after{
+        background: red;
+      }
+    }
+  }
+}
