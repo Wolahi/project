@@ -1,84 +1,23 @@
 
-.root:hover {
-    width: 256px;
-}
 .root {
     position: absolute;
-    left: 0;
-    top: 0;
     background-color: #FAFAFA;
     width: 121px;
     height: 100vh;
     transition: all 0.2s;
-    .menu {
-        height: 90%;
-        display: flex;
-        margin: 0 auto;
-        align-items: center;
-        .links {
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            padding-left: 30px;
-            a:after {
-                display: block;
-                position: absolute;
-                content: "";
-                height: 0;
-                width: 4px;
-                background-color: rgba(0,163,255,0.5) ;
-                transition: height 0.4s ease-in-out;
-                left: 0;
-                transform: translateY(-33px);
-            }
-            a:hover:after,
-            a:focus:after {
-                height: 44px;
-            }
-            a {
-                text-decoration: none;
-                display: inline-block;
-                line-height: 1;
-
-                .blockActive {
-                    background-color: #00A3FF ;
-                    position: absolute;
-                    width: 4px;
-                    height: 44px;
-                    left: 0;
-                    transform: translateY(-11px);
-                }
-
-                .active {
-                    color: #0F0F0F;
-                    font-family: 'Open Sans', sans-serif;
-                    font-weight: 800 !important;;
-                    font-size: 16px;
-                    line-height: 22px;
-                }
-
-                .pending {
-                    color: #757575;
-                    font-family: 'Open Sans', sans-serif;
-                    font-weight: 400 ;
-                    font-size: 14px;
-                    line-height: 22px;
-                    transition: all 0.5ms;
-                }
-
-                .pending:hover {
-                    font-weight: 600;
-                    color: #1a1a1a;
-                }
-
-            }
-        }
+    &:hover {
+        width: 256px;
     }
+}
 
-    .buttonSignIN {
-        padding: 30px;
-        a:after {
+.buttonSignIN {
+    padding: 30px;
+    a {
+        display: inline-block;
+        line-height: 1;
+        text-decoration: none;
+
+        &:after {
             display: block;
             position: absolute;
             content: "";
@@ -89,23 +28,79 @@
             left: 0;
             transform: translateY(-33px);
         }
-        a:hover:after,
-        a:focus:after {
+
+        &:hover:after {
             width: 100%;
+
         }
-        a {
+
+        span {
             color: #0F0F0F;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 800 ;
+            font-size: 16px;
+            line-height: 22px;
+        }
+    }
+
+}
+
+.links {
+    list-style: none;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+        a {
+            text-decoration: none;
             display: inline-block;
             line-height: 1;
-            text-decoration: none;
-            span {
-                color: inherit;
+            margin-top: 24px ;
+            &:after {
+                display: block;
+                position: absolute;
+                content: "";
+                height: 0;
+                width: 4px;
+                background-color: rgba(0,163,255,0.5) ;
+                transition: height 0.4s ease-in-out;
+                left: 0;
+                transform: translateY(-33px);
+            }
+            &:hover:after {
+                height: 44px;
+            }
+            .blockActive {
+                background-color: #00A3FF ;
+                position: absolute;
+                width: 4px;
+                height: 44px;
+                left: 0;
+                transform: translateY(-11px);
+            }
+
+            .active {
+                color: #0F0F0F;
                 font-family: 'Open Sans', sans-serif;
                 font-weight: 800 !important;;
                 font-size: 16px;
                 line-height: 22px;
             }
-        }
 
+            .pending {
+                color: #757575;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400 ;
+                font-size: 14px;
+                line-height: 22px;
+                transition: all 0.5ms;
+            }
+
+            .pending:hover {
+                font-weight: 600;
+                color: #1a1a1a;
+            }
+
+        }
     }
-}

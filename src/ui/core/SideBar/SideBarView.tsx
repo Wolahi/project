@@ -4,33 +4,34 @@ import styles from "./SideBar.module.scss";
 
 const SideBar = (): ReactElement => {
   return (
-    <div className={styles.root}>
-      <div className={styles.menu}>
-        <div className={styles.links}>
+    <aside className={styles.root}>
+      <ul className={styles.links}>
+        <li>
           <NavLink to="/">
             {({ isActive }): ReactElement => (
               <span className={isActive ? styles.active : styles.pending}>
                 <div className={isActive ? styles.blockActive : styles.blockPending} />
-                Map{" "}
+                Map
               </span>
             )}
           </NavLink>
+        </li>
+        <li>
           <NavLink to="/settings">
             {({ isActive }): ReactElement => (
               <span className={isActive ? styles.active : styles.pending}>
-                {" "}
                 <div className={isActive && styles.blockActive} /> Settings{" "}
               </span>
             )}
           </NavLink>
-        </div>
-      </div>
+        </li>
+      </ul>
       <div className={styles.buttonSignIN}>
         <NavLink to="/auth/signIn">
           <span> Sign In </span>
         </NavLink>
       </div>
-    </div>
+    </aside>
   );
 };
 export default SideBar;
