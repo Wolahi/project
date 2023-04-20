@@ -2,7 +2,7 @@
 @import "../../../style/variables";
 
 @media (max-width: 600px) {
-  .authPage{
+  .root{
     background-color: #FFF !important;
 
     .logo{
@@ -51,7 +51,7 @@
   }
 }
 
-.authPage {
+.root {
   display: grid;
   grid-template-rows: auto 1fr;
   justify-items: center;

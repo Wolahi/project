@@ -23,7 +23,7 @@ const SignUpView = (): ReactElement => {
   const onSubmit = (data: FormDataReg): void => console.log(data);
 
   return (
-    <div className={styles.authPage}>
+    <div className={styles.root}>
       <div className={styles.logo}>LOGO</div>
       <FormProvider {...methods}>
         <div className={styles.signForm}>
