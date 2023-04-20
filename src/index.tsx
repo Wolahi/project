@@ -10,8 +10,13 @@ import Settings from "./ui/pages/SettingsPage";
 import Auth from "./ui/pages/AuthPage";
 import SignInView from "./ui/core/Auth/components/SignInComponets/SignInView";
 import SignUpView from "./ui/core/Auth/components/SignUpComponents/SignUpView";
+import MapPage from "./ui/pages/MapPage";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MapPage />,
+  },
   {
     path: "/auth",
     element: <Auth />,

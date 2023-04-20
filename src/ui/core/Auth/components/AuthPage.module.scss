@@ -2,7 +2,7 @@
 @import "../../../style/variables";
 
 @media (max-width: 600px) {
-  .auth-page{
+  .root{
     background-color: #FFF !important;
 
     .logo{
@@ -10,7 +10,7 @@
       justify-self: start;
     }
 
-    .sign-form {
+    .signForm {
       form {
         padding: 0 !important;
 
@@ -26,11 +26,11 @@
             margin-left: 30px;
           }
 
-          .link-forgot{
+          .linkForgot{
             text-align: center;
           }
 
-          .input-block {
+          .inputBlock {
             input{
               margin: 0 auto !important;
               width: 330px !important;
@@ -38,11 +38,11 @@
         }
       }
 
-      .button-disabled {
+      .buttonDisabled {
         width: 330px !important;
       }
 
-      .button-enable {
+      .buttonEnable {
         width: 330px !important;
       }
 
@@ -51,7 +51,7 @@
   }
 }
 
-.auth-page {
+.root {
   display: grid;
   grid-template-rows: auto 1fr;
   justify-items: center;
@@ -78,7 +78,7 @@
     height: 5.55vh;
   }
 
-  .sign-form {
+  .signForm {
     form {
       padding: 60px;
       background-color: white;
@@ -95,22 +95,22 @@
         color: #0F0F0F;
       }
 
-      .button-disabled {
+      .buttonDisabled {
         @include button-sign-in;
 
         background: #1B1A1DBF;
       }
 
-      .button-enable {
+      .buttonEnable {
         @include button-sign-in;
       }
 
-      .button-enable:active {
+      .buttonEnable:active {
         transform: translateY(-1px);
         box-shadow: 0 5px 10px #0003;
       }
 
-      .button-enable:hover {
+      .buttonEnable:hover {
         transform: scale(1.01);
       }
 
@@ -118,13 +118,14 @@
       .sign {
         margin: 10px 0;
 
-        .link-forgot{
+        .linkForgot{
           @include link_font;
 
           font-size: 16px;
         }
 
         .error {
+          position: relative;
           font-family: 'Open Sans', sans-serif;
           font-style: normal;
           font-weight: 400;
@@ -135,11 +136,24 @@
           margin-bottom: 16px;
         }
 
-        .input-block {
+        .inputBlock {
           height: 60px;
           position: relative;
           display: flex;
           flex-direction: column;
+
+          @keyframes onAutoFillStart {
+          }
+
+          @keyframes onAutoFillCancel {
+          }
+          input:-webkit-autofill {
+            animation-name: onAutoFillStart;
+            transition: background-color -1s ease-in-out -1s;
+          }
+          input:not(:-webkit-autofill) {
+            animation-name: onAutoFillCancel;
+          }
 
           .hide {
             display: block;
@@ -155,19 +169,8 @@
             cursor: text;
             pointer-events: all;
           }
-          @keyframes onAutoFillStart {
-          }
 
-          @keyframes onAutoFillCancel {
-          }
-          input:-webkit-autofill {
-            animation-name: onAutoFillStart;
-            transition: background-color -1s ease-in-out -1s;
-          }
-          input:not(:-webkit-autofill) {
-            animation-name: onAutoFillCancel;
-          }
-          .label-top{
+          .labelTop{
             margin-left: 15px;
             display: block;
             position: absolute;
@@ -213,7 +216,7 @@
       }
     }
 
-    .change-form-text {
+    .changeFormText {
       text-align: center;
 
       @include link-font

@@ -40,4 +40,5 @@ rules: {
     'max-len': [ 'warn', { 'code': 100 } ],
     'no-let': 'off',
     'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
+
 }

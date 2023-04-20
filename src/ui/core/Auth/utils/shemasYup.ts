@@ -4,48 +4,48 @@ import { useTranslations } from "../../../../libs/TranslitionProvaider/Translati
 const useSchemasValid = (): any => {
   const translate = useTranslations();
   const schemaLogin = Yup.object({
-    email: Yup.string().when({
-      is: (val: any) => val.length > 0,
-      then: () =>
-        Yup.string().required(`${translate.text.emptyField}`).email(`${translate.text.emailError}`),
-    }),
-    password: Yup.string().when({
-      is: (val: any) => val.length > 0,
-      then: () =>
-        Yup.string()
-          .required(`${translate.text.emptyField}`)
-          .min(8, `${translate.text.minLengthError8}`),
-    }),
+    email: Yup.string()
+      .when({
+        is: (val: any) => val.length > 0,
+        then: () => Yup.string().email(`${translate.text.emailError}`),
+      })
+      .required(`${translate.text.emptyField}`),
+    password: Yup.string()
+      .when({
+        is: (val: any) => val.length > 0,
+        then: () => Yup.string().min(8, `${translate.text.minLengthError8}`),
+      })
+      .required(`${translate.text.emptyField}`),
   }).required();
 
   const schemaRegister = Yup.object({
-    userName: Yup.string().when({
-      is: (val: any) => val.length > 0,
-      then: () =>
-        Yup.string()
-          .required(`${translate.text.emptyField}`)
-          .min(2, `${translate.text.minLengthError2}`),
-    }),
-    email: Yup.string().when({
-      is: (val: any) => val.length > 0,
-      then: () =>
-        Yup.string().required(`${translate.text.emptyField}`).email(`${translate.text.emailError}`),
-    }),
-    password: Yup.string().when({
-      is: (val: any) => val.length > 0,
-      then: () =>
-        Yup.string()
-          .required(`${translate.text.emptyField}`)
-          .min(8, `${translate.text.minLengthError8}`),
-    }),
-    submitPassword: Yup.string().when({
-      is: (val: any) => val.length > 0,
-      then: () =>
-        Yup.string()
-          .required(`${translate.text.emptyField}`)
-          .min(8, `${translate.text.minLengthError8}`)
-          .oneOf([Yup.ref("password")], `${translate.text.passMustBeMatch}`),
-    }),
+    userName: Yup.string()
+      .when({
+        is: (val: any) => val.length > 0,
+        then: () => Yup.string().min(2, `${translate.text.minLengthError2}`),
+      })
+      .required(`${translate.text.emptyField}`),
+    email: Yup.string()
+      .when({
+        is: (val: any) => val.length > 0,
+        then: () => Yup.string().email(`${translate.text.emailError}`),
+      })
+      .required(`${translate.text.emptyField}`),
+    password: Yup.string()
+      .when({
+        is: (val: any) => val.length > 0,
+        then: () => Yup.string().min(8, `${translate.text.minLengthError8}`),
+      })
+      .required(`${translate.text.emptyField}`),
+    submitPassword: Yup.string()
+      .when({
+        is: (val: any) => val.length > 0,
+        then: () =>
+          Yup.string()
+            .min(8, `${translate.text.minLengthError8}`)
+            .oneOf([Yup.ref("password")], `${translate.text.passMustBeMatch}`),
+      })
+      .required(`${translate.text.emptyField}`),
   });
 
   return {

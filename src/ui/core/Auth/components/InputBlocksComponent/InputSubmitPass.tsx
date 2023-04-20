@@ -2,6 +2,8 @@ import React, { ReactElement } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useFormContext } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import clsx from "clsx";
 import styles from "../AuthPage.module.scss";
 import useData from "../AuthPageData";
 import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
@@ -12,28 +14,30 @@ const InputSubmitPass = (): ReactElement => {
     formState: { errors },
   } = useFormContext();
   const valid = useData();
+  const validLabel = valid.submitPasForLabel;
+  const validVisibility = valid.submitPasVisibility;
   const translation = useTranslations();
   return (
     <div>
-      <label htmlFor="SubmitPassword" className={styles["input-block"]}>
-        <span className={valid.submitPasForLabel.topLabel ? styles["label-top"] : styles.hide}>
+      <label htmlFor="SubmitPassword" className={styles.inputBlock}>
+        <span className={clsx(styles.hide, { [styles.labelTop]: validLabel.topLabel })}>
           {translation.text.submitPass}
         </span>
         <input
           id="SubmitPassword"
-          type={valid.submitPasVisibility.typeVis}
+          type={validVisibility.typeVis}
           onAnimationStart={(e): void => {
-            valid.submitPasForLabel.handleAutoFill(e);
+            validLabel.handleAutoFill(e);
           }}
           onClick={(): void => {
-            valid.submitPasForLabel.onFocus();
+            validLabel.onFocus();
           }}
           {...register("submitPassword", {
             onChange: (e): void => {
-              valid.submitPasForLabel.onChange(e.target.value);
+              validLabel.onChange(e.target.value);
             },
             onBlur: (): void => {
-              valid.submitPasForLabel.onBlur();
+              validLabel.onBlur();
             },
           })}
         />
@@ -41,20 +45,18 @@ const InputSubmitPass = (): ReactElement => {
           type="button"
           className={styles.eye}
           onClick={(): void => {
-            valid.submitPasVisibility.changeVis();
+            validVisibility.changeVis();
           }}>
-          {valid.submitPasVisibility.typeVis === "password" ? (
+          {validVisibility.typeVis === "password" ? (
             <AiOutlineEyeInvisible size={25} />
           ) : (
             <AiOutlineEye size={25} />
           )}
         </button>
       </label>
-      {errors.submitPassword ? (
-        <div className={styles.error}>{errors.submitPassword.message as string}</div>
-      ) : (
-        <div style={{ height: "12px" }} />
-      )}
+      <div className={styles.error}>
+        {errors.submitPassword && (errors.submitPassword.message as string)}
+      </div>
     </div>
   );
 };

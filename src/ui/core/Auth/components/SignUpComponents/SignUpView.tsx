@@ -23,10 +23,10 @@ const SignUpView = (): ReactElement => {
   const onSubmit = (data: FormDataReg): void => console.log(data);
 
   return (
-    <div className={styles["auth-page"]}>
+    <div className={styles.root}>
       <div className={styles.logo}>LOGO</div>
       <FormProvider {...methods}>
-        <div className={styles["sign-form"]}>
+        <div className={styles.signForm}>
           <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
             <div className={styles.head}>
               <span>{translations.text.signInHead}</span>
