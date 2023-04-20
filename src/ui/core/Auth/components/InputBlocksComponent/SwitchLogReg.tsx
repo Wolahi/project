@@ -7,7 +7,7 @@ const SwitchLogReg = (props: any): ReactElement => {
   const { sign } = props;
   const { path } = props;
   return (
-    <div className={styles["change-form-text"]}>
+    <div className={styles.changeFormText}>
       <span>
         {text} <Link to={path}>{sign}</Link>{" "}
       </span>

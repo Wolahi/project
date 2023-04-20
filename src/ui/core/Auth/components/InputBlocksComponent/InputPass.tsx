@@ -2,6 +2,8 @@ import React, { ReactElement } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useFormContext } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import clsx from "clsx";
 import styles from "../AuthPage.module.scss";
 import useData from "../AuthPageData";
 import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
@@ -12,28 +14,30 @@ const InputPass = (): ReactElement => {
     formState: { errors },
   } = useFormContext();
   const valid = useData();
+  const validLabel = valid.passwordForLabel;
+  const validVisibility = valid.passwordVisibility;
   const translation = useTranslations();
   return (
     <div>
-      <label htmlFor="Password" className={styles["input-block"]}>
-        <span className={valid.passwordForLabel.topLabel ? styles["label-top"] : styles.hide}>
+      <label htmlFor="Password" className={styles.inputBlock}>
+        <span className={clsx(styles.hide, { [styles.labelTop]: validLabel.topLabel })}>
           {translation.text.password}
         </span>
         <input
           id="Password"
-          type={valid.passwordVisibility.typeVis}
+          type={validVisibility.typeVis}
           onAnimationStart={(e): void => {
-            valid.passwordForLabel.handleAutoFill(e);
+            validLabel.handleAutoFill(e);
           }}
           onClick={(): void => {
-            valid.passwordForLabel.onFocus();
+            validLabel.onFocus();
           }}
           {...register("password", {
             onChange: (e): void => {
-              valid.passwordForLabel.onChange(e.target.value);
+              validLabel.onChange(e.target.value);
             },
             onBlur: (): void => {
-              valid.passwordForLabel.onBlur();
+              validLabel.onBlur();
             },
           })}
         />
@@ -41,20 +45,16 @@ const InputPass = (): ReactElement => {
           type="button"
           className={styles.eye}
           onClick={(): void => {
-            valid.passwordVisibility.changeVis();
+            validVisibility.changeVis();
           }}>
-          {valid.passwordVisibility.typeVis === "password" ? (
+          {validVisibility.typeVis === "password" ? (
             <AiOutlineEyeInvisible size={25} />
           ) : (
             <AiOutlineEye size={25} />
           )}
         </button>
       </label>
-      {errors.password ? (
-        <div className={styles.error}>{errors.password.message as string}</div>
-      ) : (
-        <div style={{ height: "12px" }} />
-      )}
+      <div className={styles.error}>{errors.password && (errors.password.message as string)}</div>
     </div>
   );
 };

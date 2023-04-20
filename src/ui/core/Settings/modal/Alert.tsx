@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 import Icon from "../../../../assets/icons/close-icon.svg";
 import "../../../style/Alert.scss";
 
@@ -11,12 +11,6 @@ const Alert = ({
   setActive: any;
   text: string;
 }): ReactElement => {
-  useEffect(() => {
-    setTimeout(() => {
-      setActive(false);
-    }, 10 * 1000);
-  }, [active, setActive]);
-
   return (
     <div>
       {active && (

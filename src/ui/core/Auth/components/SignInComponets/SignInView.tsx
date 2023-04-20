@@ -20,10 +20,10 @@ const SignInView = (): ReactElement => {
   });
   const onSubmit = (data: FormDataLogin): void => console.log(data);
   return (
-    <div className={styles["auth-page"]}>
+    <div className={styles.authPage}>
       <div className={styles.logo}>LOGO</div>
       <FormProvider {...methods}>
-        <div className={styles["sign-form"]}>
+        <div className={styles.signForm}>
           <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
             <div className={styles.head}>
               <span>{translations.text.signInHead}</span>

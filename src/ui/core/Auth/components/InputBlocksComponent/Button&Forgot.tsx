@@ -7,11 +7,11 @@ const ButtonForgot = (props: any): ReactElement => {
   return (
     <div>
       {!signUp && (
-        <div className={styles["link-forgot"]}>
+        <div className={styles.linkForgot}>
           <a href="/#">Forgot your password?</a>
         </div>
       )}
-      <button type="submit" className={styles["button-enable"]}>
+      <button type="submit" className={styles.buttonEnable}>
         {sign}
       </button>
     </div>
