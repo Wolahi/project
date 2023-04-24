@@ -1,88 +1,45 @@
-import { ReactElement, useState } from "react";
-import SettingModalPage from "./modal/SettingModalPage";
+import { ReactElement } from "react";
 import styles from "./SettingPage.module.scss";
-import Alert from "./modal/Alert";
+import ComponentAlert from "./modal/Alert";
+import SettingBlockNickname from "./SettingsBlock/SettingBlockNickname";
+import useData from "./SettingPageData";
+import SettingBlockEmail from "./SettingsBlock/SettingBlockEmail";
+import SettingBlockPassword from "./SettingsBlock/SettingsBlockPassword";
+import SettingBlockDeleteAcc from "./SettingsBlock/SettingBlockDeleteAcc";
 
 const SettingPage = (): ReactElement => {
-  const [showNicknameChange, setShowNicknameChange] = useState(false);
-  const [showEmailChange, setShowEmailChange] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [textAlert, setTextAlert] = useState("");
-
+  const data = useData();
+  const { SettingAlert: Alert } = data;
   return (
     <div>
       <div className={styles.settingPageStyle}>
         <h1>Settings</h1>
-        <div className={styles.textBlock}>
-          <h2>User nickname</h2>
-          <div>
-            Yor nickname is <b>mr.ananasick</b>
-          </div>
-          {!showNicknameChange && (
-            <button
-              type="button"
-              onClick={(): void => {
-                setShowNicknameChange(true);
-              }}>
-              Change
-            </button>
-          )}
-          <SettingModalPage
-            show={showNicknameChange}
-            setShow={setShowNicknameChange}
-            setShowAlert={setShowAlert}
-            setTextAlert={setTextAlert}
-            text="You changed your nickname"
-          />
-        </div>
-        <div className={styles.textBlock}>
-          <h2>Email address</h2>
-          <div>
-            Your email address is <b>test@email.com</b>
-          </div>
-          {!showEmailChange && (
-            <button
-              type="button"
-              onClick={(): void => {
-                setShowEmailChange(true);
-              }}>
-              Change
-            </button>
-          )}
-          <SettingModalPage
-            show={showEmailChange}
-            setShow={setShowEmailChange}
-            setShowAlert={setShowAlert}
-            setTextAlert={setTextAlert}
-            text="You changed your email"
-          />
-        </div>
-        <div className={styles.textBlock}>
-          <h2>Password</h2>
-          You can request a new password to your email
-          <button
-            type="button"
-            onClick={(): void => {
-              setShowAlert(true);
-              setTextAlert("Вы изменили свой пароль");
-            }}>
-            Request
-          </button>
-        </div>
-        <div className={styles.textBlock}>
-          <h2>Delete account</h2>
-          Permanently delete this account?
-          <button
-            type="button"
-            onClick={(): void => {
-              setShowAlert(true);
-              setTextAlert("Вы удалили свою учетную запись");
-            }}>
-            Delete
-          </button>
-        </div>
+        <SettingBlockNickname
+          alertText="You changed your nickname"
+          setShowAlert={Alert.setShowAlert}
+          setTextAlert={Alert.setTextAlert}
+        />
+        <SettingBlockEmail
+          alertText="You changed your email"
+          setShowAlert={Alert.setShowAlert}
+          setTextAlert={Alert.setTextAlert}
+        />
+        <SettingBlockPassword
+          alertText="You changed your password"
+          setShowAlert={Alert.setShowAlert}
+          setTextAlert={Alert.setTextAlert}
+        />
+        <SettingBlockDeleteAcc
+          alertText="You have deleted your account"
+          setShowAlert={Alert.setShowAlert}
+          setTextAlert={Alert.setTextAlert}
+        />
       </div>
-      <Alert active={showAlert} setActive={setShowAlert} text={textAlert} />
+      <ComponentAlert
+        active={Alert.showAlert}
+        setActive={Alert.setShowAlert}
+        text={Alert.textAlert}
+      />
     </div>
   );
 };
