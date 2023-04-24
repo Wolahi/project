@@ -3,7 +3,6 @@ import React, { ReactElement } from "react";
 import { fromLonLat } from "ol/proj";
 import { RMap, ROSM } from "rlayers";
 import styles from "./Map.module.scss";
-import usePos from "../../hooks/HooksMap/usePos";
 
 const MapView = (): ReactElement => {
   const center = fromLonLat([39.1843, 51.672]);
