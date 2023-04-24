@@ -1,5 +1,5 @@
-import useLabel from "../../../hooks/useLabel";
-import useChangeVis from "../../../hooks/useChangeVis";
+import useLabel from "../../../hooks/HooksAuth/useLabel";
+import useChangeVis from "../../../hooks/HooksAuth/useChangeVis";
 
 const useData = (): any => {
   const userNameForLabel = useLabel("");
