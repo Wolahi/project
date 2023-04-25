@@ -4,9 +4,10 @@ import { useFormContext } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import clsx from "clsx";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useTranslation } from "react-i18next";
 import styles from "../AuthPage.module.scss";
 import useData from "../AuthPageData";
-import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
 
 const InputPass = (): ReactElement => {
   const {
@@ -16,12 +17,12 @@ const InputPass = (): ReactElement => {
   const valid = useData();
   const validLabel = valid.passwordForLabel;
   const validVisibility = valid.passwordVisibility;
-  const translation = useTranslations();
+  const { t } = useTranslation();
   return (
     <div>
       <label htmlFor="Password" className={styles.inputBlock}>
         <span className={clsx(styles.hide, { [styles.labelTop]: validLabel.topLabel })}>
-          {translation.text.password}
+          {t("authBlock.password")}
         </span>
         <input
           id="Password"

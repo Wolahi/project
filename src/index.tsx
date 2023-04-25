@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import ReactDOM, { Root } from "react-dom/client";
-import React from "react";
+import React, { Suspense } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createBrowserRouter } from "react-router-dom";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -11,6 +11,7 @@ import Auth from "./ui/pages/AuthPage";
 import SignInView from "./ui/core/Auth/components/SignInComponets/SignInView";
 import SignUpView from "./ui/core/Auth/components/SignUpComponents/SignUpView";
 import MapPage from "./ui/pages/MapPage";
+import "./i18n.js";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
 const root: Root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
   </React.StrictMode>,
 );
