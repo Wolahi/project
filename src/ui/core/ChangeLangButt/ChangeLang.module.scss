@@ -1,0 +1,23 @@
+.root {
+  position: absolute;
+  margin-top: 5.5vh;
+  .button {
+    width: 50px;
+    height: auto;
+    input {
+      margin: 0 auto;
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+  .dropdown {
+    width: 50px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    .viewLang
+    {
+
+    }
+  }
+}

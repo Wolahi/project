@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import SettingModalPage from "../modal/SettingModalPage";
 import styles from "../SettingPage.module.scss";
 import useData from "../SettingPageData";
@@ -6,11 +7,12 @@ import useData from "../SettingPageData";
 const SettingBlockNickname = (props: any): ReactElement => {
   const { alertText, setShowAlert, setTextAlert } = props;
   const data = useData();
+  const { t } = useTranslation();
   return (
     <div className={styles.textBlock}>
-      <h2>User nickname</h2>
+      <h2>{t("settingsPage.userName")}</h2>
       <div>
-        Yor nickname is <b>mr.ananasick</b>
+        {t("settingsPage.userNameIs")} <b>mr.ananasick</b>
       </div>
       {!data.showNicknameChange && (
         <button

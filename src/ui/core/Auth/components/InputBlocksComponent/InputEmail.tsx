@@ -3,9 +3,10 @@ import React, { ReactElement } from "react";
 import { useFormContext } from "react-hook-form";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import clsx from "clsx";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useTranslation } from "react-i18next";
 import styles from "../AuthPage.module.scss";
 import useData from "../AuthPageData";
-import { useTranslations } from "../../../../../libs/TranslitionProvaider/TranslationProvider";
 
 const InputEmail = (): ReactElement => {
   const {
@@ -14,12 +15,12 @@ const InputEmail = (): ReactElement => {
   } = useFormContext();
   const valid = useData();
   const validLabel = valid.emailForLabel;
-  const translation = useTranslations();
+  const { t } = useTranslation();
   return (
     <div>
       <label htmlFor="Email" className={styles.inputBlock}>
         <span className={clsx(styles.hide, { [styles.labelTop]: validLabel.topLabel })}>
-          {translation.text.email}
+          {t("authBlock.email")}
         </span>
         <input
           id="Email"

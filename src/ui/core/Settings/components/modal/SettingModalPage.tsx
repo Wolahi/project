@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from "yup";
 import useSchemasValidSetting from "../../utils/shemasYup";
 import styles from "./SettingModalPage.module.scss";

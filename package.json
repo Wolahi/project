@@ -13,9 +13,12 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "clsx": "^1.2.1",
     "eslint-plugin-prettier": "^4.2.1",
+    "i18next": "^22.4.15",
+    "i18next-browser-languagedetector": "^7.0.1",
     "ol": "^7.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.2.2",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "react-router": "^6.10.0",
@@ -26,7 +29,7 @@
     "sass": "^1.58.3",
     "sass-loader": "^13.2.2",
     "web-vitals": "^2.1.4",
-    "yup": "^1.0.2"
+    "yup": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -71,7 +74,9 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "i18next-http-backend": "^2.2.0",
     "prettier": "2.8.4",
+    "react-dropdown-input": "^0.1.11",
     "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0",
     "style-loader": "^3.3.2",

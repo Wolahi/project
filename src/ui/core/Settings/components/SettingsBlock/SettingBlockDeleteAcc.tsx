@@ -1,12 +1,14 @@
 import { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "../SettingPage.module.scss";
 
 const SettingBlockDeleteAcc = (props: any): ReactElement => {
   const { alertText, setShowAlert, setTextAlert } = props;
+  const { t } = useTranslation();
   return (
     <div className={styles.textBlock}>
-      <h2>Delete account</h2>
-      Permanently delete this account?
+      <h2>{t("settingsPage.delAcc")}</h2>
+      {t("settingsPage.perDelAcc")}
       <button
         type="button"
         onClick={(): void => {

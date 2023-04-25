@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./SettingPage.module.scss";
 import ComponentAlert from "./modal/Alert";
 import SettingBlockNickname from "./SettingsBlock/SettingBlockNickname";
@@ -9,28 +10,29 @@ import SettingBlockDeleteAcc from "./SettingsBlock/SettingBlockDeleteAcc";
 
 const SettingPage = (): ReactElement => {
   const data = useData();
+  const { t } = useTranslation();
   const { SettingAlert: Alert } = data;
   return (
     <div>
       <div className={styles.settingPageStyle}>
         <h1>Settings</h1>
         <SettingBlockNickname
-          alertText="You changed your nickname"
+          alertText={t("settingsPage.alertNickName")}
           setShowAlert={Alert.setShowAlert}
           setTextAlert={Alert.setTextAlert}
         />
         <SettingBlockEmail
-          alertText="You changed your email"
+          alertText={t("settingsPage.alertEmail")}
           setShowAlert={Alert.setShowAlert}
           setTextAlert={Alert.setTextAlert}
         />
         <SettingBlockPassword
-          alertText="You changed your password"
+          alertText={t("settingsPage.alertPas")}
           setShowAlert={Alert.setShowAlert}
           setTextAlert={Alert.setTextAlert}
         />
         <SettingBlockDeleteAcc
-          alertText="You have deleted your account"
+          alertText={t("settingsPage.alertDel")}
           setShowAlert={Alert.setShowAlert}
           setTextAlert={Alert.setTextAlert}
         />
