@@ -15,7 +15,7 @@ const SettingPage = (): ReactElement => {
   return (
     <div>
       <div className={styles.settingPageStyle}>
-        <h1>Settings</h1>
+        <h1>{t("settingsPage.header")}</h1>
         <SettingBlockNickname
           alertText={t("settingsPage.alertNickName")}
           setShowAlert={Alert.setShowAlert}

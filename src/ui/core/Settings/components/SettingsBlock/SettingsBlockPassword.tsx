@@ -15,7 +15,7 @@ const SettingBlockPassword = (props: any): ReactElement => {
           setShowAlert(true);
           setTextAlert(alertText);
         }}>
-        Request
+        {t("settingsPage.request")}
       </button>
     </div>
   );

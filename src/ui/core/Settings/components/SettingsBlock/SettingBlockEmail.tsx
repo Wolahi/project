@@ -20,7 +20,7 @@ const SettingBlockEmail = (props: any): ReactElement => {
           onClick={(): void => {
             data.setShowEmailChange(true);
           }}>
-          Change
+          {t("settingsPage.change")}
         </button>
       )}
       <SettingModalPage

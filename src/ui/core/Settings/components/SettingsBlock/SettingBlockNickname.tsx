@@ -20,7 +20,7 @@ const SettingBlockNickname = (props: any): ReactElement => {
           onClick={(): void => {
             data.setShowNicknameChange(true);
           }}>
-          Change
+          {t("settingsPage.change")}
         </button>
       )}
       <SettingModalPage

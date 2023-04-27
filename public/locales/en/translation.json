@@ -22,6 +22,12 @@
     "passMustBeMatch": "Passwords must match"
   },
   "settingsPage": {
+    "header": "Settings",
+    "del": "Delete",
+    "change": "Change",
+    "request": "Request",
+    "save": "Save",
+    "cancel": "Cancel",
     "delAcc": "Delete account",
     "perDelAcc": "Permanently delete this account?",
     "email": "Email address",

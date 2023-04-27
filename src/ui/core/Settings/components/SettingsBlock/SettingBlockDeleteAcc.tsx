@@ -15,7 +15,7 @@ const SettingBlockDeleteAcc = (props: any): ReactElement => {
           setShowAlert(true);
           setTextAlert(alertText);
         }}>
-        Delete
+        {t("settingsPage.del")}
       </button>
     </div>
   );
