@@ -1,0 +1,56 @@
+@import "../../../style/variables.scss";
+@import "../../../style/mixins.scss";
+
+.root {
+  position: absolute;
+  background-color: #FFFFFF;
+  width: 200px;
+  display: flex;
+  padding: 15px;
+  top:-50px;
+  justify-content: space-evenly;
+  border-radius: 20px;
+}
+
+.text{
+  position: relative;
+  font-family: $font-montserrat;
+  background-color: #FFFFFF;
+  border: none;
+  font-size: 15px;
+  font-weight: 400;
+  height: 100%;
+}
+
+.close {
+  position: relative;
+  border: none;
+  background-color: #FFFFFF;
+  transition: 0.3s;
+
+  .svgClose {
+    position: absolute;
+
+    &:before, &:after {
+      content: "";
+      cursor: pointer;
+      position: absolute;
+      width: 20px;
+      height: 2.3px;
+      background: black;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+
+    &:hover::before, &:hover::after{
+      background: red;
+    }
+  }
+
+}
