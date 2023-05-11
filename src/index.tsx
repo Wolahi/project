@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import ReactDOM, { Root } from "react-dom/client";
 import React, { Suspense } from "react";
+import { Provider } from "react-redux";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createBrowserRouter } from "react-router-dom";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -12,11 +13,23 @@ import SignInView from "./ui/core/Auth/components/SignInComponets/SignInView";
 import SignUpView from "./ui/core/Auth/components/SignUpComponents/SignUpView";
 import MapPage from "./ui/pages/MapPage";
 import "./i18n.js";
+import Main from "./ui/pages/Main/Index";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MapPage />,
+    element: <Main />,
+    children: [
+      {
+        path: "map",
+        element: <MapPage />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+    ],
   },
   {
     path: "/auth",
@@ -32,17 +45,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  {
-    path: "/settings",
-    element: <Settings />,
-  },
 ]);
 const root: Root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <Provider store={store}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </Provider>
   </React.StrictMode>,
 );

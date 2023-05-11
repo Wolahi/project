@@ -11,7 +11,7 @@ const SideBar = (): ReactElement => {
       <ChangeLang />
       <ul className={styles.links}>
         <li>
-          <NavLink to="/">
+          <NavLink to="/map">
             {({ isActive }): ReactElement => (
               <span className={isActive ? styles.active : styles.pending}>
                 <div className={isActive ? styles.blockActive : styles.blockPending} />
