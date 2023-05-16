@@ -1,0 +1,103 @@
+.root {
+    min-width: 800px;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb($color: #000000, $alpha: 0.7);
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    position: relative;
+    width: 50%;
+    height: 60%;
+    background-color: #FFF;
+}
+
+.error {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #F0452B;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.inputBlock {
+          height: 60px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #000;
+          border-radius: 6px;
+
+          @keyframes onAutoFillStart {
+          }
+
+          @keyframes onAutoFillCancel {
+          }
+          input:-webkit-autofill {
+            animation-name: onAutoFillStart;
+            transition: background-color -1s ease-in-out -1s;
+          }
+          input:not(:-webkit-autofill) {
+            animation-name: onAutoFillCancel;
+          }
+
+          .hide {
+            display: block;
+            position: absolute;
+            margin-left: 15px;
+            top: 0;
+            margin-top: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            color: #757575;
+            cursor: text;
+            pointer-events: all;
+          }
+
+          .labelTop{
+            margin-left: 15px;
+            display: block;
+            position: absolute;
+            font-size: 12px;
+            margin-top: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            color: #757575;
+            cursor: text;
+          }
+
+          input {
+            padding-top: 10px;
+            display: block;
+            padding-left: 17px;
+            background: #F6F6F6;
+            border-radius: 6px;
+            outline: none;
+            width: 384px;
+            height: 60px;
+            border: 0;
+          }
+
+          input:focus {
+            border: 0;
+            background: #EBEBEB;
+          }
+}

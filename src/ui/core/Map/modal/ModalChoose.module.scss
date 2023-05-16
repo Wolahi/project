@@ -9,10 +9,12 @@
   padding: 15px;
   top:-50px;
   justify-content: space-evenly;
-  border-radius: 20px;
+  border-radius: 10px 10px 10px 0px;
+  transition: all 0.5s;
 }
 
 .text{
+  cursor: pointer;
   position: relative;
   font-family: $font-montserrat;
   background-color: #FFFFFF;

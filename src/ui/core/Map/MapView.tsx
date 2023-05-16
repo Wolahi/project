@@ -8,6 +8,7 @@ import styles from "./Map.module.scss";
 import ModalChoose from "./modal/ModalChoose";
 import useTypedSelector from "../../../shared/hooks/useTypedSelector";
 import useActions from "../../../shared/hooks/map/useMapActions";
+import ModalCreate from "./modal/ModalCreateEvent";
 
 const MapView = (): ReactElement => {
   const [point, setPoint] = useState(new Point([0, 0]));
@@ -15,16 +16,16 @@ const MapView = (): ReactElement => {
   const [isLoading, setLoad] = useState(mapCenter.center[0] === 0);
   const { addToMapCenter } = useActions();
   const [view, setView] = useState(false);
+  const [viewGlobal, setViewGlob] = useState(false);
   const vectorRef = useRef() as React.RefObject<RLayerVector>;
   return (
     <div className={styles.root}>
+      <ModalCreate />
       {isLoading && <div className={styles.load}>Loading...</div>}
       <RMap
         className={styles.map}
         initial={mapCenter}
         onClick={(e: any): void => {
-          if (!isLoading) {
-          }
           const coords = e.map.getCoordinateFromPixel(e.pixel);
           setPoint(new Point(coords));
           setView(true);
@@ -67,7 +68,7 @@ const MapView = (): ReactElement => {
           <RLayerVector ref={vectorRef}>
             <RFeature geometry={point}>
               <ROverlay>
-                <ModalChoose setView={setView} />
+                <ModalChoose setView={setView} setViewGlob={setViewGlob} />
               </ROverlay>
             </RFeature>
           </RLayerVector>
