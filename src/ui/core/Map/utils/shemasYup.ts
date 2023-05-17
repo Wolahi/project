@@ -2,9 +2,10 @@ import * as Yup from "yup";
 
 const useSchemasValid = (): any => {
   const schemaEvent = Yup.object({
-    name: Yup.string().required(),
-    info: Yup.string().required(),
-    addres: Yup.string().required(),
+    name_event: Yup.string(),
+    info: Yup.string(),
+    addres: Yup.string(),
+    data: Yup.date(),
   });
 
   return schemaEvent;

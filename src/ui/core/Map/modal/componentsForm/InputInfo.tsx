@@ -6,7 +6,7 @@ import clsx from "clsx";
 import styles from "../ModalCreate.module.scss";
 import useLabel from "../../../../hooks/HooksAuth/useLabel";
 
-const InputAddres = (): ReactElement => {
+const InputInfo = (): ReactElement => {
   const {
     register,
     formState: { errors },
@@ -14,20 +14,19 @@ const InputAddres = (): ReactElement => {
   const validLabel = useLabel("");
   return (
     <div>
-      <label htmlFor="Addres" className={styles.inputBlock}>
+      <label htmlFor="info" className={styles.inputBlock}>
         <span className={clsx(styles.hide, { [styles.labelTop]: validLabel.topLabel })}>
-          Address
+          Info Event
         </span>
-        <input
-          id="Addres"
-          type="text"
+        <textarea
+          id="info"
           onAnimationStart={(e): void => {
             validLabel.handleAutoFill(e);
           }}
           onClick={(): void => {
             validLabel.onFocus();
           }}
-          {...register("addres", {
+          {...register("info", {
             onChange: (e): void => {
               validLabel.onChange(e.target.value);
             },
@@ -42,4 +41,4 @@ const InputAddres = (): ReactElement => {
   );
 };
 
-export default InputAddres;
+export default InputInfo;
