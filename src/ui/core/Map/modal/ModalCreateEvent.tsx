@@ -12,7 +12,7 @@ import ButtonSubmit from "./componentsForm/ButtonSubmit";
 import ImgInput from "./componentsForm/ImgInput";
 
 const ModalCreate = (props: any): ReactElement => {
-  const { setViewGlob } = props;
+  const { setView } = props;
   const schemas = useSchemasValid();
   type FromEventInfo = yup.InferType<typeof schemas.schemaEvent>;
   const methods = useForm<FromEventInfo>({
@@ -36,7 +36,7 @@ const ModalCreate = (props: any): ReactElement => {
         <div className={styles.imgFile}>
           <ImgInput />
         </div>
-        <button type="button" onClick={(): void => setViewGlob(false)} className={styles.close}>
+        <button type="button" onClick={(): void => setView(false)} className={styles.close}>
           <div className={styles.svgClose} />
         </button>
       </div>

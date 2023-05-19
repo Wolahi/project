@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement } from "react";
 // eslint-disable-next-line import/no-unresolved
 import { RFeature, RGeolocation, RLayerVector, RMap, ROSM, ROverlay } from "rlayers";
 import { Geolocation } from "ol";
@@ -6,41 +6,21 @@ import { Geolocation } from "ol";
 import { Point } from "ol/geom";
 import styles from "./Map.module.scss";
 import ModalChoose from "./modal/ModalChoose";
-import useTypedSelector from "../../../shared/hooks/useTypedSelector";
-import useActions from "../../../shared/hooks/map/useMapActions";
 import ModalCreate from "./modal/ModalCreateEvent";
+import useMap from "./MapController";
 
 const MapView = (): ReactElement => {
-  const [point, setPoint] = useState(new Point([0, 0]));
-  const { mapCenter } = useTypedSelector((state) => state);
-  const [isLoading, setLoad] = useState(mapCenter.center[0] === 0);
-  const { addToMapCenter } = useActions();
-  const [view, setView] = useState(false);
-  const [viewGlobal, setViewGlob] = useState(false);
-  const vectorRef = useRef() as React.RefObject<RLayerVector>;
+  const map = useMap();
   return (
     <div className={styles.root}>
-      <ModalCreate />
-      {isLoading && <div className={styles.load}>Loading...</div>}
+      {map.viewGlobal && <ModalCreate setView={map.setViewGlob} />}
+      {map.isLoading && <div className={styles.load}>Loading...</div>}
       <RMap
         className={styles.map}
-        initial={mapCenter}
-        onClick={(e: any): void => {
-          const coords = e.map.getCoordinateFromPixel(e.pixel);
-          setPoint(new Point(coords));
-          setView(true);
-        }}
-        onMoveEnd={(e: any): void => {
-          const cent: number[] = e.map.getView().getCenter();
-          // eslint-disable-next-line
-          const zoomMap = e.map.getView().values_.zoom;
-          const data = {
-            center: cent,
-            zoom: zoomMap,
-          };
-          addToMapCenter(data);
-        }}>
-        {!isLoading && <ROSM />}
+        initial={map.mapCenter}
+        onClick={(e: any): void => map.spawnPoint(e)}
+        onMoveEnd={(e: any): void => map.saveCoords(e)}>
+        {!map.isLoading && <ROSM />}
         <RGeolocation
           tracking
           trackingOptions={{ enableHighAccuracy: true }}
@@ -52,23 +32,22 @@ const MapView = (): ReactElement => {
               duration: 250,
               maxZoom: 11,
             });
-
             // eslint-disable-next-line react/destructuring-assignment,react/no-this-in-sfc
-            const data = {
+            const coords = {
               // eslint-disable-next-line
               center: this.context.map.getView().getCenter(),
               // eslint-disable-next-line
               zoom: this.context.map.getView().values_.zoom,
             };
-            setLoad(false);
-            addToMapCenter(data);
+            map.setLoad(false);
+            map.addToMapCenter(coords);
           }, [])}
         />
-        {view && (
-          <RLayerVector ref={vectorRef}>
-            <RFeature geometry={point}>
+        {map.view && (
+          <RLayerVector ref={map.vectorRef}>
+            <RFeature geometry={new Point(map.point)}>
               <ROverlay>
-                <ModalChoose setView={setView} setViewGlob={setViewGlob} />
+                <ModalChoose setView={map.setView} setViewGlob={map.setViewGlob} />
               </ROverlay>
             </RFeature>
           </RLayerVector>

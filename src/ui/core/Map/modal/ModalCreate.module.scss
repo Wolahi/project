@@ -52,13 +52,13 @@
 }
 
 .close {
-  position: relative;
+  position: absolute;
   border: none;
   background-color: #FFFFFF;
   transition: 0.3s;
-
+  right: 0;
+  transform: translate(-30px,15px);
   .svgClose {
-    position: absolute;
 
     &:before, &:after {
       content: "";
@@ -180,10 +180,12 @@
     transform: scale(1.01);
   }
 
-  .inputFileBlock {
+.inputFileBlock {
       display: flex;
       width: 90%;
       height: 100%;
+      overflow: hidden;
+      position: relative;
       margin: 0 auto;
       border: 1px dashed #a2a2a6;
       align-items: flex-end;
@@ -194,32 +196,39 @@
       border-radius: 8px;
       font-weight: 600;
       font-family: 'Open Sans', sans-serif;
-    }
-    .input_file {
-      position: relative;
-      display: inline-block;
-      input {
+
+      img {
         position: absolute;
-        z-index: -1;
-        opacity: 0;
-        display: block;
-        width: 0;
-        height: 0;
-      }
-      span {
-        @include button-sign-in;
-        margin-top: 50%;
-        position: relative;
-        text-align: center;
-        display: inline-block;
-        width: 250px;
-        height: 40px;
-        padding: 10px 20px;
-        &:hover {
-          opacity: 0.9;
-        }
-        &:active {
-          transform: scale(0.9);
-        }
+        overflow: auto;
+        bottom: 0;
       }
     }
+.input_file {
+    position: relative;
+    display: inline-block;
+    input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      display: block;
+      width: 0;
+      height: 0;
+      }
+    span {
+      @include button-sign-in;
+      margin-top: 50%;
+      position: relative;
+      text-align: center;
+      display: inline-block;
+      width: 250px;
+      height: 40px;
+      padding: 10px 20px;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
