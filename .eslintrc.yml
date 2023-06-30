@@ -32,6 +32,7 @@ rules: {
     react/function-component-definition: 0,
     react/jsx-props-no-spreading: 0,
     'no-shadow': 'off',
+    "default-param-last": 0,
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
@@ -41,5 +42,4 @@ rules: {
     'max-len': [ 'warn', { 'code': 100 } ],
     'no-let': 'off',
     'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
-
 }

@@ -12,7 +12,7 @@ import InputEmail from "../InputBlocksComponent/InputEmail";
 import InputPass from "../InputBlocksComponent/InputPass";
 import ButtonForgot from "../InputBlocksComponent/Button&Forgot";
 import SwitchLogReg from "../InputBlocksComponent/SwitchLogReg";
-import ChangeLang from "../../../ChangeLangButt/ChangeLang";
+import ChangeLang from "../../../utils/ChangeLangButt/ChangeLang";
 
 const SignInView = (): ReactElement => {
   const { t } = useTranslation();
@@ -25,8 +25,10 @@ const SignInView = (): ReactElement => {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
+        <div className={styles.lang}>
+          <ChangeLang />
+        </div>
         <div className={styles.logo}>LOGO</div>
-        <ChangeLang />
       </div>
       <FormProvider {...methods}>
         <div className={styles.signForm}>

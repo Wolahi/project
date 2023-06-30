@@ -14,7 +14,7 @@ import ButtonForgot from "../InputBlocksComponent/Button&Forgot";
 import SwitchLogReg from "../InputBlocksComponent/SwitchLogReg";
 import InputSubmitPass from "../InputBlocksComponent/InputSubmitPass";
 import InputUserName from "../InputBlocksComponent/InputUserName";
-import ChangeLang from "../../../ChangeLangButt/ChangeLang";
+import ChangeLang from "../../../utils/ChangeLangButt/ChangeLang";
 
 const SignUpView = (): ReactElement => {
   const { t } = useTranslation();
@@ -28,8 +28,10 @@ const SignUpView = (): ReactElement => {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
+        <div className={styles.lang}>
+          <ChangeLang />
+        </div>
         <div className={styles.logo}>LOGO</div>
-        <ChangeLang />
       </div>
       <FormProvider {...methods}>
         <div className={styles.signForm}>

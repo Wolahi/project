@@ -2,13 +2,15 @@ import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./SideBar.module.scss";
-import ChangeLang from "../ChangeLangButt/ChangeLang";
+import ChangeLang from "../utils/ChangeLangButt/ChangeLang";
 
 const SideBar = (): ReactElement => {
   const { t } = useTranslation();
   return (
     <aside className={styles.root}>
-      <ChangeLang />
+      <div className={styles.lang}>
+        <ChangeLang />
+      </div>
       <ul className={styles.links}>
         <li>
           <NavLink to="/">

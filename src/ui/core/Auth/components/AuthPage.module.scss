@@ -9,7 +9,7 @@
       margin-top: 2vh !important;
       justify-self: start;
     }
-
+    
     .signForm {
       form {
         padding: 0 !important;
@@ -79,7 +79,13 @@
       width: 228px;
       height: 5.55vh;
     }
-
+    .lang{
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding-top: 5.5vh;
+      padding-left: 1vh;
+    }
   }
 
 

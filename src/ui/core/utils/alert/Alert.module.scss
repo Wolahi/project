@@ -1,11 +1,23 @@
-@import "../../../../style/variables.scss";
-
+@import "../../../style/variables.scss";
+@keyframes showAlert {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes hideAlert {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
 .alertPosition {
   position: absolute;
   bottom: 0;
   width: 100%;
-
-  .alert {
+  .alertClose{
+    animation: hideAlert 1s forwards;
+  }
+  .alert{
+    animation: showAlert 1s forwards;
+  }
+  .alert, .alertClose{
     font-family: $font-open-sans;
     margin: 0 auto;
     margin-bottom: 32px;
@@ -17,7 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    opacity: 0;
     .text {
       font-size: 14px;
       margin-left: 24px;

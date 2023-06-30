@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./SettingPage.module.scss";
-import ComponentAlert from "./modal/Alert";
+import ComponentAlert from "../../utils/alert/Alert";
 import SettingBlockNickname from "./SettingsBlock/SettingBlockNickname";
 import useData from "./SettingPageData";
 import SettingBlockEmail from "./SettingsBlock/SettingBlockEmail";
