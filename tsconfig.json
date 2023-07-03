@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
+    "target": "ES2021",
     "watch": true,
     "module": "commonjs",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "sourceMap": false,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
     "strictNullChecks": true,
     "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
@@ -13,8 +17,8 @@
   "./src/**/*",
     "prettier.config.js",
     "webpack.config.js",
-    "declarations.d.ts"
-  ],
+    "declarations.d.ts",
+    "ORMconfig.ts"  ],
   "exclude": [
     "node_modules",
   ]

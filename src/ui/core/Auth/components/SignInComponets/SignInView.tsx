@@ -22,6 +22,7 @@ const SignInView = (): ReactElement => {
     resolver: yupResolver(schemas.schemaLogin),
   });
   const onSubmit = (data: FormDataLogin): void => console.log(data);
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>

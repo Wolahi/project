@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,8 +23,20 @@ const SignUpView = (): ReactElement => {
   const methods = useForm<FormDataReg>({
     resolver: yupResolver(schemas.schemaRegister),
   });
-  const onSubmit = (data: FormDataReg): void => console.log(data);
+  const onSubmit = (user: FormDataReg): void => console.log(user);
 
+  useEffect((): any => {
+    console.log("qwe");
+    fetch("http://localhost:8080/auth/signUp", {
+      method: "POST",
+      body: new URLSearchParams({
+        email: "qwe@bk.ru",
+        password: "Строка",
+        userName: "федя",
+      }),
+      headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" },
+    });
+  }, []);
   return (
     <div className={styles.root}>
       <div className={styles.header}>

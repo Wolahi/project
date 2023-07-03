@@ -13,7 +13,8 @@ const MapView = (): ReactElement => {
       <RGeolocation
         tracking
         trackingOptions={{ enableHighAccuracy: true }}
-        onChange={React.useCallback(function (e: any) {
+        // eslint-disable-next-line react/destructuring-assignment,react/no-this-in-sfc
+        onChange={React.useCallback(function fn(e: any) {
           const geolocation = e.target as Geolocation;
           // eslint-disable-next-line react/destructuring-assignment,react/no-this-in-sfc
           this.context.map.getView().fit(geolocation.getAccuracyGeometry(), {
