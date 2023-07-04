@@ -19,7 +19,9 @@
     "emailError": "Please enter valid email",
     "minLengthError8": "Please enter at least 8 characters",
     "minLengthError2": "Please enter at least 2 characters",
-    "passMustBeMatch": "Passwords must match"
+    "passMustBeMatch": "Passwords must match",
+    "signUpError": "The user already exists!",
+    "signInError": "Invalid email and/or password"
   },
   "settingsPage": {
     "header": "Settings",
@@ -44,6 +46,7 @@
   "sideBar": {
     "map": "Map",
     "settings": "Settings",
-    "signIn": "Sign In"
+    "signIn": "Sign In",
+    "exit": "Exit"
   }
 }

@@ -34,7 +34,7 @@ const SideBar = (): ReactElement => {
       </ul>
       <div className={styles.buttonSignIN}>
         <NavLink to="/auth/signIn">
-          <span> {t("sideBar.signIn")} </span>
+          <span> {t("sideBar.exit")} </span>
         </NavLink>
       </div>
     </aside>

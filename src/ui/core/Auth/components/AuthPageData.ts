@@ -1,5 +1,6 @@
 import useLabel from "../../../hooks/HooksAuth/useLabel";
 import useChangeVis from "../../../hooks/HooksAuth/useChangeVis";
+import useAlert from "../../../hooks/HooksSettings/useAlert";
 
 const useData = (): any => {
   const userNameForLabel = useLabel("");
@@ -8,6 +9,7 @@ const useData = (): any => {
   const submitPasForLabel = useLabel("");
   const passwordVisibility = useChangeVis();
   const submitPasVisibility = useChangeVis();
+  const SettingAlert = useAlert();
   return {
     userNameForLabel,
     emailForLabel,
@@ -15,6 +17,7 @@ const useData = (): any => {
     submitPasForLabel,
     passwordVisibility,
     submitPasVisibility,
+    SettingAlert,
   };
 };
 

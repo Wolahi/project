@@ -1,4 +1,5 @@
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,20 +24,30 @@ const SignUpView = (): ReactElement => {
   const methods = useForm<FormDataReg>({
     resolver: yupResolver(schemas.schemaRegister),
   });
-  const onSubmit = (user: FormDataReg): void => console.log(user);
-
-  useEffect((): any => {
-    console.log("qwe");
-    fetch("http://localhost:8080/auth/signUp", {
+  const navigate = useNavigate();
+  const [resReg, setResReg] = useState(null);
+  const registration = async (user: FormDataReg): Promise<any> => {
+    await fetch("http://localhost:8080/auth/signUp", {
       method: "POST",
-      body: new URLSearchParams({
-        email: "qwe@bk.ru",
-        password: "Строка",
-        userName: "федя",
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password,
+        userName: user.userName,
       }),
-      headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" },
-    });
-  }, []);
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    })
+      .then((response) => response.json())
+      .then((result) => setResReg(result));
+  };
+  const onSubmit = (user: FormDataReg): any => {
+    registration(user);
+  };
+  useEffect(() => {
+    if (resReg) {
+      navigate("/auth/signIn");
+    }
+    // eslint-disable-next-line
+  }, [resReg]);
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -56,6 +67,9 @@ const SignUpView = (): ReactElement => {
               <InputEmail />
               <InputPass />
               <InputSubmitPass />
+              {resReg === false && (
+                <div className={styles.errorRegistr}>{t("errors.signUpError")}</div>
+              )}
               <ButtonForgot sign={t("authBlock.signUp")} signUp />
             </div>
           </form>

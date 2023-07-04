@@ -1,6 +1,7 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from "yup";
@@ -21,7 +22,31 @@ const SignInView = (): ReactElement => {
   const methods = useForm<FormDataLogin>({
     resolver: yupResolver(schemas.schemaLogin),
   });
-  const onSubmit = (data: FormDataLogin): void => console.log(data);
+  const navigate = useNavigate();
+  const [resAuth, setresAuth] = useState(null);
+  const authtorize = async (user: FormDataLogin): Promise<any> => {
+    await fetch("http://localhost:8080/auth/signIn", {
+      method: "POST",
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password,
+      }),
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setresAuth(result[0].res);
+      });
+  };
+  useEffect(() => {
+    if (resAuth) {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [resAuth]);
+  const onSubmit = (data: FormDataLogin): void => {
+    authtorize(data);
+  };
 
   return (
     <div className={styles.root}>
@@ -40,6 +65,9 @@ const SignInView = (): ReactElement => {
             <div className={styles.sign}>
               <InputEmail />
               <InputPass />
+              {resAuth === false && (
+                <div className={styles.errorSignIn}>{t("errors.signInError")}</div>
+              )}
               <ButtonForgot sign={t("authBlock.signIn")} signUp={false} />
             </div>
           </form>
