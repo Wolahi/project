@@ -16,7 +16,9 @@ const SettingModalPage = (props: any): ReactElement => {
   const { t } = useTranslation();
   type FormDataChange = yup.InferType<typeof schemas.schemaChange>;
   const methods = useForm<FormDataChange>({
-    resolver: yupResolver(schemas.schemaChange),
+    resolver: yupResolver(
+      modalProps.isEmail ? schemas.schemaEmailChange : schemas.schemaUserNameChange,
+    ),
   });
   const onSubmit = (data: FormDataChange): void => {
     console.log(data);

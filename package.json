@@ -37,6 +37,7 @@
     "sass": "^1.58.3",
     "sass-loader": "^13.2.2",
     "sequelize": "^6.32.1",
+    "ts-node": "^10.9.1",
     "typeorm": "^0.3.17",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
