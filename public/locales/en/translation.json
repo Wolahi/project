@@ -41,7 +41,9 @@
     "alertNickName": "You changed your nickname",
     "alertEmail": "You changed your email",
     "alertPas": "You changed your password",
-    "alertDel": "You have deleted your account"
+    "alertDel": "You have deleted your account",
+    "InputNickName": "Enter a new nickname",
+    "InputEmail": "Enter a new email"
   },
   "sideBar": {
     "map": "Map",

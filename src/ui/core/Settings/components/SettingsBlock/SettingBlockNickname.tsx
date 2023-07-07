@@ -5,14 +5,14 @@ import styles from "../SettingPage.module.scss";
 import useData from "../SettingPageData";
 
 const SettingBlockNickname = (props: any): ReactElement => {
-  const { alertText, setShowAlert, setTextAlert } = props;
+  const { alertText, setShowAlert, setTextAlert, userNickName } = props;
   const data = useData();
   const { t } = useTranslation();
   return (
     <div className={styles.textBlock}>
       <h2>{t("settingsPage.userName")}</h2>
       <div>
-        {t("settingsPage.userNameIs")} <b>mr.ananasick</b>
+        {t("settingsPage.userNameIs")} <b>{userNickName}</b>
       </div>
       {!data.showNicknameChange && (
         <button
@@ -29,6 +29,7 @@ const SettingBlockNickname = (props: any): ReactElement => {
         setShowAlert={setShowAlert}
         setTextAlert={setTextAlert}
         text={alertText}
+        isNickName
       />
     </div>
   );

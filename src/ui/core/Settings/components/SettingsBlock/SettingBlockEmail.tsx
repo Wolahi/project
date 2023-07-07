@@ -5,14 +5,14 @@ import styles from "../SettingPage.module.scss";
 import useData from "../SettingPageData";
 
 const SettingBlockEmail = (props: any): ReactElement => {
-  const { alertText, setShowAlert, setTextAlert } = props;
+  const { alertText, setShowAlert, setTextAlert, userEmail } = props;
   const data = useData();
   const { t } = useTranslation();
   return (
     <div className={styles.textBlock}>
       <h2>{t("settingsPage.email")}</h2>
       <div>
-        {t("settingsPage.emailIs")} <b>test@email.com</b>
+        {t("settingsPage.emailIs")} <b>{userEmail}</b>
       </div>
       {!data.showEmailChange && (
         <button
@@ -29,6 +29,7 @@ const SettingBlockEmail = (props: any): ReactElement => {
         setShowAlert={setShowAlert}
         setTextAlert={setTextAlert}
         text={alertText}
+        isEmail
       />
     </div>
   );

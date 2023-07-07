@@ -3,25 +3,37 @@
   grid-template-columns: 65px 1fr;
   row-gap: 8px;
   column-gap: 30px;
-  grid-template-areas:
-  "input input"
-  "Save Cansel";
-
-  .input {
+    grid-template-areas:
+    "input input"
+    "Save Cancel";
+  .inputWrapper{
     grid-area: input;
-    border: none;
-    resize: none;
-    border-radius: 6px;
-    height: 40px;
-    width: 320px;
-    background: #F6F6F6;
+    .input {
+      padding-left: 5px;
+      border: none;
+      border-radius: 6px;
+      height: 40px;
+      width: 320px;
+      background: #F6F6F6;
+      outline: none;
+      border-bottom: 1px solid black;
+    }
+    .error {
+      grid-area: error;
+      font-family: 'Open Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 22px;
+      color: #F0452B;
+    }
   }
-
-  .ыave {
+  
+  .Save {
     grid-area: Save;
   }
 
-  .сansel {
-    grid-area: Cansel;
+  .Cancel {
+    grid-area: Cancel;
   }
 }

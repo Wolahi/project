@@ -1,5 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from "universal-cookie";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -35,6 +37,9 @@ const SignInView = (): ReactElement => {
     })
       .then((response) => response.json())
       .then((result) => {
+        const cookies = new Cookies();
+        cookies.set("user", result[0].token, { path: "/" });
+        console.log(cookies.get("user"));
         setresAuth(result[0].res);
       });
   };

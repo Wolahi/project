@@ -1,12 +1,14 @@
 import { ReactElement } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FormProvider, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import useSchemasValidSetting from "../../utils/shemasYup";
 import styles from "./SettingModalPage.module.scss";
+import InputChangedEmail from "./components/inputChangeEmail";
+import InputChangedNickName from "./components/inputChagedNickName";
 
 const SettingModalPage = (props: any): ReactElement => {
   const modalProps = props;
@@ -16,23 +18,18 @@ const SettingModalPage = (props: any): ReactElement => {
   const methods = useForm<FormDataChange>({
     resolver: yupResolver(schemas.schemaChange),
   });
-  const onSubmit = (data: FormDataChange): void => console.log(data);
-
+  const onSubmit = (data: FormDataChange): void => {
+    console.log(data);
+  };
   return (
     <div>
       {modalProps.show && (
         <FormProvider {...methods}>
           <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
             <div className={styles.settingModalPageStyle}>
-              <textarea cols={30} className={styles.input} required />
-              <button
-                type="button"
-                className={styles.Save}
-                onClick={(): void => {
-                  modalProps.setShow(false);
-                  modalProps.setTextAlert(modalProps.text);
-                  modalProps.setShowAlert(true);
-                }}>
+              {modalProps.isNickName && <InputChangedNickName />}
+              {modalProps.isEmail && <InputChangedEmail />}
+              <button type="submit" className={styles.Save}>
                 {t("settingsPage.save")}
               </button>
               <button

@@ -3,38 +3,30 @@ import { User } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-
-const generateAccessToken = (id: any, role: any) => {
+import { Role } from "../models/Role";
+const SECRET = String(process.env.SECRET_JWT_KEY);
+const generateAccessToken = (id: any, role: any, userName: any, email: any) => {
   dotenv.config();
-  const SECRET = String(process.env.SECRET_JWT_KEY);
   const payload = {
     id,
     role,
+    userName,
+    email,
   };
+
   return jwt.sign(payload, SECRET, { expiresIn: "24h" });
 };
 class AuthController {
-  async getUsers(req: any, res: any) {
-    try {
-      return new Promise(async function (resolve, reject) {
-        const users = await dataSource
-          .getRepository(User)
-          .createQueryBuilder("User")
-          .leftJoinAndSelect("User.role", "Role")
-          .orderBy("User.id")
-          .getMany();
-        resolve(users);
-      });
-    } catch (e) {
-      console.log(e);
-      res.status(400).json({ message: "GetUsers method error" });
-    }
+  async getUser(req: any, res: any) {
+    const tokenPayload = jwt.verify(req.token, SECRET);
+    return res.json([{ token: tokenPayload }]);
   }
   async login(req: any, res: any) {
     const { email, password } = req.body;
     const condidate = await dataSource.manager.findOneBy(User, {
       email: email,
     });
+
     if (!condidate) {
       return res.json([{ token: null, res: false }]);
     }
@@ -42,8 +34,17 @@ class AuthController {
     if (!validPassword) {
       return res.json([{ token: null, res: false }]);
     }
-    const token = generateAccessToken(condidate.id, condidate.role);
-    return res.json([{ token: token, res: true }]);
+    const role = await dataSource.manager.findOneBy(Role, {
+      id: condidate.role,
+    });
+    const token = generateAccessToken(
+      condidate.id,
+      role?.role,
+      condidate.userName,
+      condidate.email,
+    );
+    const tokenPayload = jwt.verify(token, SECRET);
+    return res.json([{ token: tokenPayload, res: true }]);
   }
   async registration(req: any, res: any) {
     const { email, password, userName } = req.body;
