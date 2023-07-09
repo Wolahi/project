@@ -6,9 +6,9 @@ const initialState = {
     TextAlert: "",
     ShowAlert: false,
   },
-  map:{
+  map: {
     zoom: 11,
-    center:
+    center: [0, 0],
   },
 };
 export default initialState;
