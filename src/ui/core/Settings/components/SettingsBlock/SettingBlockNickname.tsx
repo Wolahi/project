@@ -30,6 +30,7 @@ const SettingBlockNickname = (props: any): ReactElement => {
         setTextAlert={setTextAlert}
         text={alertText}
         isNickName
+        userNickName={userNickName}
       />
     </div>
   );

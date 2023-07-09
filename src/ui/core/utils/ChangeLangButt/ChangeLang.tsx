@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./ChangeLang.module.scss";
 import store from "../../../../redux/store/Store";
-import switchLang from "../../../../redux/actuons";
+import { switchLang } from "../../../../redux/actuons";
 
 const ChangeLang = (): ReactElement => {
   const { i18n } = useTranslation();

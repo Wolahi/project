@@ -12,7 +12,8 @@
     "footerBlock": {
       "dontHaveAcc": "Don’t have an account yet?",
       "doHaveAcc": "Do you have an account yet?"
-    }
+    },
+    "AlertRegSuccessfully":"You have successfully registered!"
   },
   "errors": {
     "emptyField": "This field cannot be empty",
@@ -32,6 +33,7 @@
     "cancel": "Cancel",
     "delAcc": "Delete account",
     "perDelAcc": "Permanently delete this account?",
+    "perModalDelAcc": "Are you sure you want to permanently delete this account?",
     "email": "Email address",
     "emailIs": "Your email address is",
     "userName": "User nickname",
@@ -42,6 +44,7 @@
     "alertEmail": "You changed your email",
     "alertPas": "You changed your password",
     "alertDel": "You have deleted your account",
+    "headingDel": "Confirmation of account deletion",
     "InputNickName": "Enter a new nickname",
     "InputEmail": "Enter a new email"
   },

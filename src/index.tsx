@@ -3,6 +3,7 @@ import ReactDOM, { Root } from "react-dom/client";
 import React, { Suspense } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createBrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { RouterProvider } from "react-router";
 import "./ui/style/Index.scss";
@@ -12,6 +13,8 @@ import SignInView from "./ui/core/Auth/components/SignInComponets/SignInView";
 import SignUpView from "./ui/core/Auth/components/SignUpComponents/SignUpView";
 import MapPage from "./ui/pages/MapPage";
 import "./i18n.js";
+
+import store from "./redux/store/Store";
 
 const router = createBrowserRouter([
   {
@@ -37,11 +40,14 @@ const router = createBrowserRouter([
     element: <Settings />,
   },
 ]);
+
 const root: Root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </React.StrictMode>
+  </Provider>,
 );

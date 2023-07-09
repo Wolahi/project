@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { createConnection } from "./node_api/Connection";
 import { router as authRouter } from "./node_api/routes/authRouter";
+import { router as settingsRouter } from "./node_api/routes/settingsRouter";
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
@@ -16,6 +17,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/auth", authRouter);
+app.use("/settings", settingsRouter);
 const start = (): void => {
   try {
     createConnection()

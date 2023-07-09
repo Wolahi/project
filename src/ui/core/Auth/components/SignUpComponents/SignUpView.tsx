@@ -16,6 +16,8 @@ import SwitchLogReg from "../InputBlocksComponent/SwitchLogReg";
 import InputSubmitPass from "../InputBlocksComponent/InputSubmitPass";
 import InputUserName from "../InputBlocksComponent/InputUserName";
 import ChangeLang from "../../../utils/ChangeLangButt/ChangeLang";
+import store from "../../../../../redux/store/Store";
+import { SetText, ShowAlert } from "../../../../../redux/actuons";
 
 const SignUpView = (): ReactElement => {
   const { t } = useTranslation();
@@ -44,10 +46,19 @@ const SignUpView = (): ReactElement => {
   };
   useEffect(() => {
     if (resReg) {
+      store.dispatch(ShowAlert(true));
+      store.dispatch(SetText(t("authBlock.AlertRegSuccessfully")));
       navigate("/auth/signIn");
     }
     // eslint-disable-next-line
   }, [resReg]);
+  useEffect(() => {
+    if (store.getState().alert.ShowAlert) {
+      store.dispatch(ShowAlert(false));
+      store.dispatch(SetText(" "));
+    }
+    // eslint-disable-next-line
+  }, []);
   return (
     <div className={styles.root}>
       <div className={styles.header}>

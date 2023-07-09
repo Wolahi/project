@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FormProvider, useForm } from "react-hook-form";
+import Cookies from "universal-cookie";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,8 +21,53 @@ const SettingModalPage = (props: any): ReactElement => {
       modalProps.isEmail ? schemas.schemaEmailChange : schemas.schemaUserNameChange,
     ),
   });
+  const ChangeEmail = async (UserEmail: FormDataChange): Promise<any> => {
+    await fetch("http://localhost:8080/settings/changeEmail", {
+      method: "POST",
+      body: JSON.stringify({
+        changedEmail: UserEmail,
+        userEmail: modalProps.userEmail,
+      }),
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result[0].res) {
+          const cookies = new Cookies();
+          cookies.remove("user");
+          cookies.set("user", result[0].token, { path: "/" });
+          modalProps.setShowAlert(true);
+          modalProps.setTextAlert(t("settingsPage.alertEmail"));
+        }
+      });
+  };
+  const ChangeUserName = async (UserName: FormDataChange): Promise<any> => {
+    await fetch("http://localhost:8080/settings/changeUserName", {
+      method: "POST",
+      body: JSON.stringify({
+        userName: modalProps.userNickName,
+        changedUserName: UserName,
+      }),
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result[0].res);
+        if (result[0].res) {
+          const cookies = new Cookies();
+          cookies.remove("user");
+          cookies.set("user", result[0].token, { path: "/" });
+          modalProps.setShowAlert(true);
+          modalProps.setTextAlert(t("settingsPage.alertNickName"));
+        }
+      });
+  };
   const onSubmit = (data: FormDataChange): void => {
-    console.log(data);
+    if (modalProps.isEmail) {
+      ChangeEmail(data.emailChanged);
+    } else {
+      ChangeUserName(data.userNameChanged);
+    }
   };
   return (
     <div>

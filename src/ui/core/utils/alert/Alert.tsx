@@ -37,8 +37,8 @@ const Alert = ({
     // eslint-disable-next-line
   }, [text]);
   return (
-    <div>
-      {active ? (
+    <div className={styles.alertdiv}>
+      {active && (
         <div className={styles.alertPosition}>
           <div className={!hideAlert ? styles.alert : styles.alertClose}>
             <div className={styles.text}>{text}</div>
@@ -52,8 +52,6 @@ const Alert = ({
             </button>
           </div>
         </div>
-      ) : (
-        <div> </div>
       )}
     </div>
   );

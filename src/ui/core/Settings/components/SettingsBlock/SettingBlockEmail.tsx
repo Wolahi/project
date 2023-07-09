@@ -30,6 +30,7 @@ const SettingBlockEmail = (props: any): ReactElement => {
         setTextAlert={setTextAlert}
         text={alertText}
         isEmail
+        userEmail={userEmail}
       />
     </div>
   );

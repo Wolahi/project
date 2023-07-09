@@ -10,6 +10,7 @@ const useData = (): any => {
   const passwordVisibility = useChangeVis();
   const submitPasVisibility = useChangeVis();
   const SettingAlert = useAlert();
+
   return {
     userNameForLabel,
     emailForLabel,

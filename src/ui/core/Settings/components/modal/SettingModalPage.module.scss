@@ -3,7 +3,7 @@
   grid-template-columns: 65px 1fr;
   row-gap: 8px;
   column-gap: 30px;
-    grid-template-areas:
+  grid-template-areas:
     "input input"
     "Save Cancel";
   .inputWrapper{
@@ -36,4 +36,77 @@
   .Cancel {
     grid-area: Cancel;
   }
+}
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.modalWrapper {
+  align-items: center;
+	background: rgba(0, 0, 0, 0.7);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+  z-index: 100;
+  .modalBody{
+    opacity: 0;
+    animation: ani .5s forwards;
+    padding: 25px;
+    width: 400px;
+    height: 200px;
+    position: relative;
+    border-radius: 10px;
+    background: #fff;
+    .close{
+      position: absolute;
+      background: none;
+      border: none;
+      right: 0;
+      margin-top: -15px;
+      margin-right: 30px;
+      width: 1px;
+      height: 23px;
+      .svgClose {
+        position: absolute;
+      }
+      
+      .svgClose:before, .svgClose:after {
+        content: "";
+        cursor: pointer;
+        position: absolute;
+        width: 20px; 
+        height: 2.3px; 
+        background: grey;
+      }
+
+      .svgClose:before {
+        transform: rotate(45deg);
+      }
+      
+      .svgClose:after {
+        transform: rotate(-45deg);
+      }
+      .svgClose:hover::before, .svgClose:hover::after{
+        background: red;
+      }
+    }
+    .deleteModal{
+      .deleteModalText{
+        margin-top: 20px;
+        font-weight: 400;
+        display: inline-block;
+      }
+      .btnDelete{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 25px;
+        font-weight: bold;
+      }
+    }
+  }   
 }

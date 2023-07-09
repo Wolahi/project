@@ -16,6 +16,9 @@ import InputPass from "../InputBlocksComponent/InputPass";
 import ButtonForgot from "../InputBlocksComponent/Button&Forgot";
 import SwitchLogReg from "../InputBlocksComponent/SwitchLogReg";
 import ChangeLang from "../../../utils/ChangeLangButt/ChangeLang";
+import ComponentAlert from "../../../utils/alert/Alert";
+import store from "../../../../../redux/store/Store";
+import { ShowAlert } from "../../../../../redux/actuons";
 
 const SignInView = (): ReactElement => {
   const { t } = useTranslation();
@@ -39,7 +42,6 @@ const SignInView = (): ReactElement => {
       .then((result) => {
         const cookies = new Cookies();
         cookies.set("user", result[0].token, { path: "/" });
-        console.log(cookies.get("user"));
         setresAuth(result[0].res);
       });
   };
@@ -52,7 +54,6 @@ const SignInView = (): ReactElement => {
   const onSubmit = (data: FormDataLogin): void => {
     authtorize(data);
   };
-
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -82,6 +83,13 @@ const SignInView = (): ReactElement => {
             sign={t("authBlock.signUp")}
           />
         </div>
+        {store.getState().alert.ShowAlert && (
+          <ComponentAlert
+            active={store.getState().alert.ShowAlert}
+            setActive={ShowAlert}
+            text={store.getState().alert.TextAlert}
+          />
+        )}
       </FormProvider>
     </div>
   );

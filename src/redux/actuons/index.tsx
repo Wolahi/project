@@ -3,4 +3,16 @@ const switchLang = (): any => {
     type: "SWITCH_LANG",
   };
 };
-export default switchLang;
+const ShowAlert = (value: any): any => {
+  return {
+    type: "ShowAlert",
+    ShowAlert: value,
+  };
+};
+const SetText = (value: any): any => {
+  return {
+    type: "SetText",
+    TextAlert: value,
+  };
+};
+export { switchLang, ShowAlert, SetText };
