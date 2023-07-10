@@ -11,12 +11,11 @@
     .input {
       padding-left: 5px;
       border: none;
-      border-radius: 6px;
       height: 40px;
       width: 320px;
       background: #F6F6F6;
       outline: none;
-      border-bottom: 1px solid black;
+      border: 1px ridge black;
     }
     .error {
       grid-area: error;
@@ -52,12 +51,13 @@
 	right: 0;
 	top: 0;
   z-index: 100;
+  min-width: 1000px;
   .modalBody{
     opacity: 0;
     animation: ani .5s forwards;
     padding: 25px;
     width: 400px;
-    height: 200px;
+    min-height: 250px;
     position: relative;
     border-radius: 10px;
     background: #fff;
@@ -69,7 +69,7 @@
       margin-top: -15px;
       margin-right: 30px;
       width: 1px;
-      height: 23px;
+      height: 17px;
       .svgClose {
         position: absolute;
       }
@@ -79,7 +79,7 @@
         cursor: pointer;
         position: absolute;
         width: 20px; 
-        height: 2.3px; 
+        height: 1.9px; 
         background: grey;
       }
 
@@ -95,17 +95,50 @@
       }
     }
     .deleteModal{
+      .deleteModalError{
+        display: block;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        color: #F0452B;
+        margin-top: 5px;
+      }
+      .input {
+        padding-left: 5px;
+        margin-top: 5px;
+        display: block;
+        border: none;
+        height: 30px;
+        width: 250px;
+        background: #F6F6F6;
+        outline: none;
+        border: 1px ridge black;
+      }
       .deleteModalText{
         margin-top: 20px;
         font-weight: 400;
         display: inline-block;
       }
+      .btnChange{
+        background: #dddcdc;
+        font-weight: bold;
+        right: 0;
+        margin-top: 15px;
+        &:hover{
+          background: black;;
+        }
+      }
       .btnDelete{
         position: absolute;
+        background: #dddcdc;
         bottom: 0;
         right: 0;
         margin: 25px;
         font-weight: bold;
+        &:hover{
+          background: black;;
+        }
       }
     }
   }   

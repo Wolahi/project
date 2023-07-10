@@ -21,27 +21,19 @@ const SettingPage = (): ReactElement => {
       <div className={styles.settingPageStyle}>
         <h1>{t("settingsPage.header")}</h1>
         <SettingBlockNickname
-          alertText={t("settingsPage.alertNickName")}
           setShowAlert={Alert.setShowAlert}
           setTextAlert={Alert.setTextAlert}
           userNickName={currentUser.userName}
+          active={Alert.showAlert}
         />
         <SettingBlockEmail
-          alertText={t("settingsPage.alertEmail")}
           setShowAlert={Alert.setShowAlert}
           setTextAlert={Alert.setTextAlert}
           userEmail={currentUser.email}
+          active={Alert.showAlert}
         />
-        <SettingBlockPassword
-          alertText={t("settingsPage.alertPas")}
-          setShowAlert={Alert.setShowAlert}
-          setTextAlert={Alert.setTextAlert}
-        />
-        <SettingBlockDeleteAcc
-          alertText={t("settingsPage.alertDel")}
-          setShowAlert={Alert.setShowAlert}
-          setTextAlert={Alert.setTextAlert}
-        />
+        <SettingBlockPassword setShowAlert={Alert.setShowAlert} setTextAlert={Alert.setTextAlert} />
+        <SettingBlockDeleteAcc />
       </div>
       <ComponentAlert
         active={Alert.showAlert}

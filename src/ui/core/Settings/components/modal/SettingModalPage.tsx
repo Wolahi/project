@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FormProvider, useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
@@ -16,6 +16,7 @@ const SettingModalPage = (props: any): ReactElement => {
   const schemas = useSchemasValidSetting();
   const { t } = useTranslation();
   type FormDataChange = yup.InferType<typeof schemas.schemaChange>;
+  const [emailError, setEmailError] = useState(false);
   const methods = useForm<FormDataChange>({
     resolver: yupResolver(
       modalProps.isEmail ? schemas.schemaEmailChange : schemas.schemaUserNameChange,
@@ -33,11 +34,14 @@ const SettingModalPage = (props: any): ReactElement => {
       .then((response) => response.json())
       .then((result) => {
         if (result[0].res) {
+          setEmailError(false);
           const cookies = new Cookies();
           cookies.remove("user");
           cookies.set("user", result[0].token, { path: "/" });
           modalProps.setShowAlert(true);
           modalProps.setTextAlert(t("settingsPage.alertEmail"));
+        } else {
+          setEmailError(true);
         }
       });
   };
@@ -52,8 +56,8 @@ const SettingModalPage = (props: any): ReactElement => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result[0].res);
         if (result[0].res) {
+          setEmailError(false);
           const cookies = new Cookies();
           cookies.remove("user");
           cookies.set("user", result[0].token, { path: "/" });
@@ -63,6 +67,9 @@ const SettingModalPage = (props: any): ReactElement => {
       });
   };
   const onSubmit = (data: FormDataChange): void => {
+    if (modalProps.active) {
+      return;
+    }
     if (modalProps.isEmail) {
       ChangeEmail(data.emailChanged);
     } else {
@@ -76,7 +83,9 @@ const SettingModalPage = (props: any): ReactElement => {
           <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
             <div className={styles.settingModalPageStyle}>
               {modalProps.isNickName && <InputChangedNickName />}
-              {modalProps.isEmail && <InputChangedEmail />}
+              {modalProps.isEmail && (
+                <InputChangedEmail emailError={emailError} setEmailError={setEmailError} />
+              )}
               <button type="submit" className={styles.Save}>
                 {t("settingsPage.save")}
               </button>

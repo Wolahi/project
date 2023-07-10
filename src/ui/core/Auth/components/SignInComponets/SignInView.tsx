@@ -18,7 +18,7 @@ import SwitchLogReg from "../InputBlocksComponent/SwitchLogReg";
 import ChangeLang from "../../../utils/ChangeLangButt/ChangeLang";
 import ComponentAlert from "../../../utils/alert/Alert";
 import store from "../../../../../redux/store/Store";
-import { ShowAlert } from "../../../../../redux/actuons";
+import { ShowAlert } from "../../../../../redux/actions";
 
 const SignInView = (): ReactElement => {
   const { t } = useTranslation();

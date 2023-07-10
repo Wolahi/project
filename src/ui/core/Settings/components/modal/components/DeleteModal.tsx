@@ -4,10 +4,10 @@ import { useNavigate } from "react-router";
 import Cookies from "universal-cookie";
 import styles from "../SettingModalPage.module.scss";
 import store from "../../../../../../redux/store/Store";
-import { SetText, ShowAlert } from "../../../../../../redux/actuons";
+import { SetText, ShowAlert } from "../../../../../../redux/actions";
 
 const DeleteModal = (props: any): ReactElement => {
-  const { alertText, setShow } = props;
+  const { setShow } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();
   const DeleteAcc = async (currentUserId: any): Promise<any> => {
@@ -22,7 +22,7 @@ const DeleteModal = (props: any): ReactElement => {
       .then((result) => {
         if (result[0].res) {
           store.dispatch(ShowAlert(true));
-          store.dispatch(SetText(t(alertText)));
+          store.dispatch(SetText(t("settingsPage.alertDel")));
           navigate("/auth/signIn");
         }
       });

@@ -5,7 +5,7 @@ import styles from "../SettingPage.module.scss";
 import useData from "../SettingPageData";
 
 const SettingBlockEmail = (props: any): ReactElement => {
-  const { alertText, setShowAlert, setTextAlert, userEmail } = props;
+  const { setShowAlert, setTextAlert, userEmail, active } = props;
   const data = useData();
   const { t } = useTranslation();
   return (
@@ -25,10 +25,10 @@ const SettingBlockEmail = (props: any): ReactElement => {
       )}
       <SettingModalPage
         show={data.showEmailChange}
+        active={active}
         setShow={data.setShowEmailChange}
         setShowAlert={setShowAlert}
         setTextAlert={setTextAlert}
-        text={alertText}
         isEmail
         userEmail={userEmail}
       />

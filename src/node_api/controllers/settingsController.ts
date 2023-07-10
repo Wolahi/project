@@ -44,12 +44,6 @@ class SettingsController {
   }
   async ChangeUserName(req: any, res: any) {
     const { userName, changedUserName } = req.body;
-    const condidate = await dataSource.manager.findOneBy(User, {
-      userName: changedUserName,
-    });
-    if (condidate) {
-      return res.json([{ token: null, res: false }]);
-    }
     const user = await dataSource.manager.findOneBy(User, {
       userName: userName,
     });
@@ -66,7 +60,20 @@ class SettingsController {
 
     return res.json([{ token: null, res: false }]);
   }
-  async ChangeUserPassword(req: any, res: any) {}
+  async ChangeUserPassword(req: any, res: any) {
+    const { userId, Password } = req.body;
+    const condidate = await dataSource.manager.findOneBy(User, {
+      id: userId,
+    });
+    if (condidate) {
+      const saltRounds = 7;
+      const hashPassword = bcrypt.hashSync(Password, saltRounds);
+      condidate.password = hashPassword;
+      await dataSource.manager.save(User, condidate);
+      return res.json([{ res: true, user: condidate }]);
+    }
+    return res.json([{ res: false }]);
+  }
   async DeletedAcc(req: any, res: any) {
     const { userId } = req.body;
     const condidate = await dataSource.manager.findOneBy(User, {

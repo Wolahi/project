@@ -5,7 +5,7 @@ import styles from "../SettingPage.module.scss";
 import useData from "../SettingPageData";
 
 const SettingBlockNickname = (props: any): ReactElement => {
-  const { alertText, setShowAlert, setTextAlert, userNickName } = props;
+  const { setShowAlert, setTextAlert, userNickName, active } = props;
   const data = useData();
   const { t } = useTranslation();
   return (
@@ -25,10 +25,10 @@ const SettingBlockNickname = (props: any): ReactElement => {
       )}
       <SettingModalPage
         show={data.showNicknameChange}
+        active={active}
         setShow={data.setShowNicknameChange}
         setShowAlert={setShowAlert}
         setTextAlert={setTextAlert}
-        text={alertText}
         isNickName
         userNickName={userNickName}
       />

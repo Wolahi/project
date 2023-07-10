@@ -17,7 +17,7 @@ import InputSubmitPass from "../InputBlocksComponent/InputSubmitPass";
 import InputUserName from "../InputBlocksComponent/InputUserName";
 import ChangeLang from "../../../utils/ChangeLangButt/ChangeLang";
 import store from "../../../../../redux/store/Store";
-import { SetText, ShowAlert } from "../../../../../redux/actuons";
+import { SetText, ShowAlert } from "../../../../../redux/actions";
 
 const SignUpView = (): ReactElement => {
   const { t } = useTranslation();

@@ -1,5 +1,3 @@
-import { RView } from "rlayers/RMap";
-
 const switchLang = (): any => {
   return {
     type: "SWITCH_LANG",
@@ -17,7 +15,7 @@ const SetText = (value: any): any => {
     TextAlert: value,
   };
 };
-const SetView = (value: RView): any => {
+const SetView = (value: any): any => {
   return {
     type: "SetView",
     view: value,
