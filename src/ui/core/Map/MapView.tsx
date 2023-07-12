@@ -1,15 +1,23 @@
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 // eslint-disable-next-line import/no-unresolved
-import { RGeolocation, RMap, ROSM } from "rlayers";
-import { Geolocation } from "ol";
+import { RFeature, RGeolocation, RLayerVector, RMap, ROSM, ROverlay } from "rlayers";
+// eslint-disable-next-line import/no-unresolved
+import { Point } from "ol/geom";
+import { Feature, Geolocation } from "ol";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router";
 import styles from "./Map.module.scss";
 import store from "../../../redux/store/Store";
-import { SetText, SetView, ShowAlert } from "../../../redux/actions";
+import { SetText, ShowAlert } from "../../../redux/actions";
+import MapModal from "./components/modal";
+import MapPoint from "./components/point";
 
 const MapView = (): ReactElement => {
   const navigate = useNavigate();
+  const [point, setPoint] = useState<any>();
+  const [show, setShow] = useState(false);
+  const [features, setFeatures] = useState<any>([]);
+  const vectorRef = React.useRef() as React.RefObject<RLayerVector>;
   useEffect(() => {
     const cookies = new Cookies();
     const currentUser = cookies.get("user");
@@ -22,36 +30,56 @@ const MapView = (): ReactElement => {
     }
     // eslint-disable-next-line
   }, []);
-  let view = store.getState().map;
 
   return (
     <RMap
       className={styles.root}
-      initial={view.map ? view.map : view}
-      onMoveEnd={(e): any => {
-        const newView = {
-          center: e.frameState?.viewState.center,
-          zoom: e.frameState?.viewState.zoom,
-        };
-        store.dispatch(SetView(newView));
-        view = store.getState().map;
+      initial={{ center: [0, 0], zoom: 11 }}
+      onClick={(e): any => {
+        const coords = e.map.getCoordinateFromPixel(e.pixel);
+        const newPoint = new Feature({ geometry: new Point(coords) });
+        setPoint(newPoint);
+        setShow(false);
+        setTimeout(() => {
+          setShow(true);
+        }, 5);
       }}>
       <ROSM />
-      {!view.map && (
-        <RGeolocation
-          tracking
-          trackingOptions={{ enableHighAccuracy: true }}
-          // eslint-disable-next-line
-          onChange={React.useCallback(function fn(e: any) {
-            const geolocation = e.target as Geolocation;
-            // eslint-disable-next-line react/destructuring-assignment,react/no-this-in-sfc
-            this.context.map.getView().fit(geolocation.getAccuracyGeometry(), {
-              duration: 250,
-              maxZoom: 11,
-            });
-          }, [])}
-        />
-      )}
+      <RLayerVector ref={vectorRef}>
+        {show && (
+          <RFeature feature={point}>
+            <ROverlay>
+              <MapModal
+                setShow={setShow}
+                setFeatures={setFeatures}
+                point={point}
+                features={features}
+              />
+            </ROverlay>
+          </RFeature>
+        )}
+        {features.map((f: any, i = 0) => (
+          /* eslint-disable no-plusplus */
+          <RFeature key={++i} feature={f}>
+            <ROverlay>
+              <MapPoint />
+            </ROverlay>
+          </RFeature>
+        ))}
+      </RLayerVector>
+      <RGeolocation
+        tracking
+        trackingOptions={{ enableHighAccuracy: true }}
+        // eslint-disable-next-line
+        onChange={React.useCallback(function fn(e: any) {
+          const geolocation = e.target as Geolocation;
+          // eslint-disable-next-line react/destructuring-assignment,react/no-this-in-sfc
+          this.context.map.getView().fit(geolocation.getAccuracyGeometry(), {
+            duration: 250,
+            maxZoom: 11,
+          });
+        }, [])}
+      />
     </RMap>
   );
 };
